@@ -1,0 +1,55 @@
+Avvio App:
+
+D/SpritedemoApplication: onCreate: creato mCastConnectionManager
+D/MainActivity: onCreate: creato mCastConnectionFragment
+D/MainActivity: onCreate: creato mSpriteDemoFragment
+ D/MainActivity: updateFragments: 
+ D/CastConnectionFragment: onCreate:
+ D/MainActivity: updateFragments: 
+ 
+ Cliccato su icona:
+ 
+ Selezionato cast:
+05-03 09:57:43.374 6843-6843/com.google.cast.samples.games.spritedemo D/CastConnectionManager: MediaRouteCallback.onRouteSelected: info=MediaRouter.RouteInfo{ uniqueId=com.google.android.gms/.cast.media.CastMediaRouteProviderService:6439c3e5a075f61079a54f71f0df6627, name=MirkoCast, description=Chromecast, enabled=true, connecting=false, canDisconnect=false, playbackType=1, playbackStream=-1, volumeHandling=0, volume=0, volumeMax=20, presentationDisplayId=-1, extras=Bundle[mParcelledData.dataSize=668], settingsIntent=null, providerPackageName=com.google.android.gms }
+05-03 09:57:43.385 6843-6843/com.google.cast.samples.games.spritedemo D/CastConnectionManager: setSelectedDevice: "MirkoCast" (6439c3e5a075f61079a54f71f0df6627)
+05-03 09:57:43.386 6843-6843/com.google.cast.samples.games.spritedemo D/MainActivity: update: cast connection changes
+05-03 09:57:43.386 6843-6843/com.google.cast.samples.games.spritedemo D/MainActivity: updateFragments: 
+05-03 09:57:47.908 6843-6843/com.google.cast.samples.games.spritedemo D/CastConnectionManager: GoogleApiClient connected.
+
+
+***STARCAST**
+
+Avvio app:
+05-03 10:21:51.625 25317-25317/com.google.cast.samples.games.starcast D/MainActivity: onCreate: mCastConnectionFragment e mStarCastFragment creati
+05-03 10:21:51.625 25317-25317/com.google.cast.samples.games.starcast D/MainActivity: updateFragments: 
+05-03 10:21:51.625 25317-25317/com.google.cast.samples.games.starcast D/MainActivity: hasPlayerConnected: 
+05-03 10:21:51.639 25317-25317/com.google.cast.samples.games.starcast D/MainActivity: onResume: 
+05-03 10:21:51.640 25317-25317/com.google.cast.samples.games.starcast D/MainActivity: updateFragments: 
+05-03 10:21:51.640 25317-25317/com.google.cast.samples.games.starcast D/MainActivity: hasPlayerConnected: 
+
+Cliccato su icona:
+
+selezionato cast:
+05-03 10:23:52.842 25317-25317/com.google.cast.samples.games.starcast D/CastConnectionManager: MediaRouteCallback.onRouteSelected: info=MediaRouter.RouteInfo{ uniqueId=com.google.android.gms/.cast.media.CastMediaRouteProviderService:6439c3e5a075f61079a54f71f0df6627, name=MirkoCast, description=Chromecast, iconUri=null, enabled=true, connecting=false, connectionState=0, canDisconnect=false, playbackType=1, playbackStream=-1, deviceType=1, volumeHandling=0, volume=0, volumeMax=20, presentationDisplayId=-1, extras=Bundle[mParcelledData.dataSize=668], settingsIntent=null, providerPackageName=com.google.android.gms }
+05-03 10:23:52.862 25317-25317/com.google.cast.samples.games.starcast D/CastConnectionManager: setSelectedDevice: "MirkoCast" (6439c3e5a075f61079a54f71f0df6627)
+05-03 10:23:52.863 25317-25317/com.google.cast.samples.games.starcast D/MainActivity: update: cast connection changed
+05-03 10:23:52.863 25317-25317/com.google.cast.samples.games.starcast D/MainActivity: updateFragments: 
+05-03 10:23:52.863 25317-25317/com.google.cast.samples.games.starcast D/MainActivity: hasPlayerConnected: 
+05-03 10:23:53.126 25317-25317/com.google.cast.samples.games.starcast D/CastConnectionManager: GoogleApiClient connected.
+05-03 10:23:55.648 25317-25317/com.google.cast.samples.games.starcast D/CastConnectionManager: Launching game: PUBLIC: Starcast
+05-03 10:23:55.768 25317-25317/com.google.cast.samples.games.starcast D/MainActivity: update: cast connection changed
+05-03 10:23:55.768 25317-25317/com.google.cast.samples.games.starcast D/MainActivity: hasPlayerConnected: 
+05-03 10:23:55.781 25317-25317/com.google.cast.samples.games.starcast D/MainActivity: updateFragments: 
+05-03 10:23:55.781 25317-25317/com.google.cast.samples.games.starcast D/MainActivity: hasPlayerConnected: 
+05-03 10:23:55.982 25317-25317/com.google.cast.samples.games.starcast D/MainActivity: updateFragments: 
+05-03 10:23:55.982 25317-25317/com.google.cast.samples.games.starcast D/MainActivity: hasPlayerConnected: 
+
+
+
+
+premuto tasto:
+MainActivity.update() ma si ferma al primo if
+CastConnectionManager.onConnected()
+GameManagerGetInstanceCallback.onResult() crea gamemanager
+mainactivity.update ma questa volta entra dentro: cerca di inviare messaggio disponibilità giocatore e poi chiama callback del risultato
+
