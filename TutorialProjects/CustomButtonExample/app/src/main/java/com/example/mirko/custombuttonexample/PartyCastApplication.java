@@ -31,4 +31,6 @@ public class PartyCastApplication extends Application implements CastConnectionM
     public String getCastAppId() {
         return getResources().getString(R.string.app_id);
     }
+
+
 }

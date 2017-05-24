@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.MediaRouteButton;
 import android.util.Log;
 import android.view.MenuItem;
@@ -23,7 +22,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import java.util.Observable;
 import java.util.Observer;
 
-public class MainActivity extends AppCompatActivity implements Observer{
+public class MainActivity extends GeneralActivity implements Observer{
 
     private CastConnectionManager connectionManager;
     private static final String TAG = "MainActivity";
@@ -33,8 +32,14 @@ public class MainActivity extends AppCompatActivity implements Observer{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Impostiamo schermo intero
+        setFullScreenListener();
+
+        //Set layout
         setContentView(R.layout.activity_main);
 
+        //Creazione animazione per il pulsante
         Button btnPlay = (Button)findViewById(R.id.buttonPlay);
         final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bouncebutton);
         // Use bounce interpolator with amplitude 0.2 and frequency 20
@@ -42,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements Observer{
         myAnim.setInterpolator(interpolator);
 
         btnPlay.startAnimation(myAnim);
+
 
         //animazione avatar
         ImageView imgAvatar=(ImageView) findViewById(R.id.imgAvatar);
@@ -58,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements Observer{
         writer.setCharacterDelay(150);
         writer.animateText("Ciao Gilbo!");
 
+        //Oggetti per il collegamento cast
         connectionManager=PartyCastApplication.getInstance().getCastConnectionManager();
         mediaRouteButton = (MediaRouteButton) findViewById(R.id.media_route_button);
         mediaRouteButton.setRouteSelector(connectionManager.getMediaRouteSelector());
@@ -68,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements Observer{
                 mediaRouteButton.performClick();
             }
         });
+
+
 
     }
 
@@ -115,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements Observer{
                         Log.d(TAG, "onResult: Creiamo la nuova activity!");
                         Intent intent=new Intent(getBaseContext(),GameActivity.class);
                         startActivity(intent);
+                        finish();
                     }
                 }
             });
