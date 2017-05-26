@@ -4,7 +4,7 @@ var bootState = {
     create: function () {
         //do things
 
-        game.state.start("titleScreen");
+        game.gamePhaser.state.start("titleScreen");
     }
 
 }
