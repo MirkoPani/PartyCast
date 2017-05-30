@@ -8,18 +8,29 @@
 window.game = {};
 
 function Player(id, name, avatar) {
+    //General
     this.Id = id;
     this.Name = name;
     this.Avatar = avatar;
+
+    //Sprite
     this.sprite = game.gamePhaser.add.sprite(0, 0, 'avatars', game.avatarsMap.get(avatar));
     this.sprite.anchor.set(0.5);
+    this.sprite.scale.setTo(0.5, 0.5);
     this.sprite.visible = false;
     this.sprite.z = 0.8;
+
+    //Shadow
     this.shadow = game.gamePhaser.add.sprite(0, 0, 'shadow');
     this.shadow.anchor.set(0.5);
-    this.shadow.scale.setTo(0.5, 0.5);
+    this.shadow.scale.setTo(0.2, 0.2);
     this.sprite.visible = false;
     this.shadow.z=1;
+
+    //Player name
+    this.nameTitle= game.gamePhaser.add.text(0,0,this.Name,game.textStyles.nameStyle);
+    this.nameTitle.anchor.set(0.5);
+    this.nameTitle.fontSize=30;
 };
 
 function PlayerManager() {
@@ -72,6 +83,19 @@ PlayerManager.prototype.setPlayerPosition = function (id,x,y) {
     console.log("Player con questo id not found");
 }
 
+//Imposta la posizione del nome (phaser)
+PlayerManager.prototype.setNamePosition=function(id,x,y){
+    for (var i = 0; i < this.players.length; ++i) {
+        if (this.players[i].Id == id) {
+            this.players[i].nameTitle.x=x;
+            this.players[i].nameTitle.y=y;
+
+            return;
+        }
+    }
+    console.log("Player con questo id not found");
+}
+
 //Rende visibile o meno l'ombra del giocatore
 PlayerManager.prototype.showShadowUnderPlayer=function (id,logicValue)
 {
@@ -101,6 +125,15 @@ function TextStyles(){
         boundsAlignH: "center",
         boundsAlignV: "middle"
     };
+
+    this.nameStyle={
+        font: "berlin",
+        fill: "#29abe2",
+        stroke:"black",
+        strokeThickness:5,
+        boundsAlignH: "center",
+        boundsAlignV: "middle"
+    }
 }
 
 function PartyCast(gameManager){

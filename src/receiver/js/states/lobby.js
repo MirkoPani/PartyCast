@@ -23,10 +23,10 @@ var lobbyState= {
     addPlayer:function(playerId,playerData) {
         game.gameManager.updatePlayerData(playerId, playerData);
         game.playerManager.addPlayer(playerId,playerData.Name,playerData.Avatar);
-        game.playerManager.setPlayerPosition(1,400,400);
-        game.playerManager.showPlayer(1,true);
-
-        game.playerManager.showShadowUnderPlayer(1,true);
+        game.playerManager.setPlayerPosition(playerId,(window.innerWidth/5)*game.playerManager.players.length+1,400);
+        game.playerManager.setNamePosition(playerId,(window.innerWidth/5)*game.playerManager.players.length+1,550);
+        game.playerManager.showPlayer(playerId,true);
+        game.playerManager.showShadowUnderPlayer(playerId,true);
     }
 
 }
