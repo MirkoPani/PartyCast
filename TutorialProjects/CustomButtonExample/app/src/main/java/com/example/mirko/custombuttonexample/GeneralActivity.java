@@ -13,6 +13,12 @@ public class GeneralActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        enableFullScreen(true);
+    }
+
     protected void setFullScreenListener()
     {
         View decorView= getWindow().getDecorView();
@@ -50,9 +56,9 @@ public class GeneralActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
-                .setTitle("Closing Activity")
-                .setMessage("Are you sure you want to close this activity?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                .setTitle("Attenzione")
+                .setMessage("Vuoi davvero uscire dal gioco?")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
