@@ -12,8 +12,6 @@ var titleScreenState = {
         game.music = game.gamePhaser.add.audio('wario');
 
 
-
-
         game.gamePhaser.stage.backgroundColor = "#96ceb4";
 
         //Visualizziamo logo
@@ -21,8 +19,8 @@ var titleScreenState = {
         logoSprite.anchor.set(0.5);
         logoSprite.scale.setTo(0.5, 0.5);
 
-       /* setTimeout(function () {
-            game.gamePhaser.state.start("lobby");
+        /* setTimeout(function () {
+         game.gamePhaser.state.start("lobby");
          }, 2000);*/
 
         game.music.onDecoded.add(titleScreenState.loadComplete, this);

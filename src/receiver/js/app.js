@@ -25,25 +25,38 @@ function Player(id, name, avatar) {
     this.shadow.anchor.set(0.5);
     this.shadow.scale.setTo(0.2, 0.2);
     this.sprite.visible = false;
-    this.shadow.z=1;
+    this.shadow.z = 1;
 
     //Player name
-    this.nameTitle= game.gamePhaser.add.text(0,0,this.Name,game.textStyles.nameStyle);
+    this.nameTitle = game.gamePhaser.add.text(0, 0, this.Name, game.textStyles.nameStyle);
     this.nameTitle.anchor.set(0.5);
-    this.nameTitle.fontSize=30;
+    this.nameTitle.fontSize = 30;
 };
 
 function PlayerManager() {
     this.players = [];
-
 };
 
-PlayerManager.prototype.addPlayer = function (id, name, avatar) {
+PlayerManager.prototype.addPlayerToList = function (id, name, avatar) {
     this.players.push(new Player(id, name, avatar));
 };
 
+PlayerManager.prototype.removePlayerFromList = function (id) {
+    for (var i = 0; i < this.players.length; ++i) {
+        if (this.players[i].Id == id) {
+            this.players[i].sprite.destroy();
+            this.players[i].shadow.destroy();
+            this.players[i].nameTitle.destroy();
+            //Eliminiamo il giocatore dall'elenco e aggiorniamo la lista
+            this.players.splice(i, 1);
+            return
+        }
+    }
+   // console.log("Player con questo id not found");
+}
+
 //Setta posizione e rende visibile il giocatore
-PlayerManager.prototype.showPlayer = function (id,logicValue) {
+PlayerManager.prototype.showPlayer = function (id, logicValue) {
 
 //Cerchiamo il giocatore con quell'id
     for (var i = 0; i < this.players.length; ++i) {
@@ -70,13 +83,13 @@ PlayerManager.prototype.getPlayerPosition = function (id) {
 }
 
 //Imposta la posizione del giocatore
-PlayerManager.prototype.setPlayerPosition = function (id,x,y) {
+PlayerManager.prototype.setPlayerPosition = function (id, x, y) {
     for (var i = 0; i < this.players.length; ++i) {
         if (this.players[i].Id == id) {
-            this.players[i].sprite.x=x;
-            this.players[i].sprite.y=y;
-            this.players[i].shadow.x=x;
-            this.players[i].shadow.y=y+this.players[i].sprite.height/2;
+            this.players[i].sprite.x = x;
+            this.players[i].sprite.y = y;
+            this.players[i].shadow.x = x;
+            this.players[i].shadow.y = y + this.players[i].sprite.height / 2;
             return;
         }
     }
@@ -84,12 +97,11 @@ PlayerManager.prototype.setPlayerPosition = function (id,x,y) {
 }
 
 //Imposta la posizione del nome (phaser)
-PlayerManager.prototype.setNamePosition=function(id,x,y){
+PlayerManager.prototype.setNamePosition = function (id, x, y) {
     for (var i = 0; i < this.players.length; ++i) {
         if (this.players[i].Id == id) {
-            this.players[i].nameTitle.x=x;
-            this.players[i].nameTitle.y=y;
-
+            this.players[i].nameTitle.x = x;
+            this.players[i].nameTitle.y = y;
             return;
         }
     }
@@ -97,84 +109,80 @@ PlayerManager.prototype.setNamePosition=function(id,x,y){
 }
 
 //Rende visibile o meno l'ombra del giocatore
-PlayerManager.prototype.showShadowUnderPlayer=function (id,logicValue)
-{
+PlayerManager.prototype.showShadowUnderPlayer = function (id, logicValue) {
     for (var i = 0; i < this.players.length; ++i) {
         if (this.players[i].Id == id) {
-            this.players[i].shadow.visible=logicValue;
+            this.players[i].shadow.visible = logicValue;
             return;
         }
     }
     console.log("Player con questo id not found");
 }
 
-function TextStyles(){
+function TextStyles() {
 
-    this.titleStyle= {
+    this.titleStyle = {
         font: "berlin",
         fill: "#ffcc5c",
-        stroke:"black",
-        strokeThickness:5,
+        stroke: "black",
+        strokeThickness: 5,
         boundsAlignH: "center",
         boundsAlignV: "middle"
     };
 
-    this.normalStyle= {
+    this.normalStyle = {
         font: "berlin",
         fill: "#000000",
         boundsAlignH: "center",
         boundsAlignV: "middle"
     };
 
-    this.nameStyle={
+    this.nameStyle = {
         font: "berlin",
         fill: "#29abe2",
-        stroke:"black",
-        strokeThickness:5,
+        stroke: "black",
+        strokeThickness: 5,
         boundsAlignH: "center",
         boundsAlignV: "middle"
     }
 }
 
-function PartyCast(gameManager){
-    this.gameManager=gameManager;
+function PartyCast(gameManager) {
+    this.gameManager = gameManager;
     this.debugUi = new cast.receiver.games.debug.DebugUI(this.gameManager);
 
     this.debugUi.open();
-    this.playerManager=new PlayerManager();
+    this.playerManager = new PlayerManager();
 
-    this.avatarsMap= new Map();
-    this.avatarsMap.set(1,"1.png");
-    this.avatarsMap.set(2,"2.png");
-    this.avatarsMap.set(3,"3.png");
-    this.avatarsMap.set(4,"4.png");
-    this.avatarsMap.set(5,"5.png");
-    this.avatarsMap.set(6,"6.png");
+    this.avatarsMap = new Map();
+    this.avatarsMap.set(1, "1.png");
+    this.avatarsMap.set(2, "2.png");
+    this.avatarsMap.set(3, "3.png");
+    this.avatarsMap.set(4, "4.png");
+    this.avatarsMap.set(5, "5.png");
+    this.avatarsMap.set(6, "6.png");
 
-    this.textStyles=new TextStyles();
+    this.textStyles = new TextStyles();
 
 
-    this.gamePhaser=new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, '');
+    this.gamePhaser = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, '');
     //Aggiungiamo i vari stati
-    this.gamePhaser.state.add("boot",bootState);
-    this.gamePhaser.state.add("titleScreen",titleScreenState);
-    this.gamePhaser.state.add("lobby",lobbyState);
+    this.gamePhaser.state.add("boot", bootState);
+    this.gamePhaser.state.add("titleScreen", titleScreenState);
+    this.gamePhaser.state.add("lobby", lobbyState);
 
 };
 
-PartyCast.prototype.run= function (){
-
+PartyCast.prototype.run = function () {
     this.gamePhaser.state.start("boot");
-
 };
-
 
 
 /**
  * Main entry point. This is not meant to be compiled so suppressing missing
  * goog.require checks.
  */
-var initialize = function() {
+var initialize = function () {
     var castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
     var appConfig = new cast.receiver.CastReceiverManager.Config();
 
@@ -191,18 +199,20 @@ var initialize = function() {
 
 
     var gameManager = new cast.receiver.games.GameManager(gameConfig);
-
+    //Chiudiamo la lobby
+    gameManager.updateLobbyState(
+        cast.receiver.games.LobbyState.CLOSED, null);
 
     game = new PartyCast(gameManager);
 
-    var startGame = function() {
-        game.run(function() {
+    var startGame = function () {
+        game.run(function () {
             console.log('Game running.');
             gameManager.updateGameStatusText('Game running.');
         });
     };
 
-    castReceiverManager.onReady = function(event) {
+    castReceiverManager.onReady = function (event) {
         if (document.readyState === 'complete') {
             startGame();
         } else {

@@ -2,22 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44508416-c774-4889-970e-f11d8f194249" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../assets/avatars/1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../assets/avatars/2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../assets/avatars/3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../assets/avatars/4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../assets/avatars/5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../../assets/avatars/6.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../docs/App mockup.ai" afterPath="$PROJECT_DIR$/../../docs/App mockup.ai" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../TutorialProjects/CustomButtonExample/app/build.gradle" afterPath="$PROJECT_DIR$/../../TutorialProjects/CustomButtonExample/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../TutorialProjects/CustomButtonExample/app/src/main/java/com/example/mirko/custombuttonexample/GeneralActivity.java" afterPath="$PROJECT_DIR$/../../TutorialProjects/CustomButtonExample/app/src/main/java/com/example/mirko/custombuttonexample/GeneralActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../TutorialProjects/CustomButtonExample/app/src/main/java/com/example/mirko/custombuttonexample/LobbyFragment.java" afterPath="$PROJECT_DIR$/../../TutorialProjects/CustomButtonExample/app/src/main/java/com/example/mirko/custombuttonexample/LobbyFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../TutorialProjects/CustomButtonExample/app/src/main/res/drawable/buttonshape.xml" afterPath="$PROJECT_DIR$/../../TutorialProjects/CustomButtonExample/app/src/main/res/drawable/buttonshape.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../TutorialProjects/CustomButtonExample/app/src/main/res/layout/lobby_fragment.xml" afterPath="$PROJECT_DIR$/../../TutorialProjects/CustomButtonExample/app/src/main/res/layout/lobby_fragment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../TutorialProjects/CustomButtonExample/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/../../TutorialProjects/CustomButtonExample/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../TutorialProjects/testSwipeImage/.idea/misc.xml" afterPath="$PROJECT_DIR$/../../TutorialProjects/testSwipeImage/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/states/boot.js" afterPath="$PROJECT_DIR$/js/states/boot.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/states/lobby.js" afterPath="$PROJECT_DIR$/js/states/lobby.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/states/titleScreen.js" afterPath="$PROJECT_DIR$/js/states/titleScreen.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -33,18 +21,22 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="142" column="1" lean-forward="false" selection-start-line="142" selection-start-column="1" selection-end-line="142" selection-end-column="1" />
+            <state relative-caret-position="412">
+              <caret line="54" column="5" lean-forward="false" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
               <folding>
                 <element signature="n#!!block;n#PlayerManager#0" expanded="false" />
-                <element signature="e#1081#1423#0" expanded="false" />
-                <element signature="e#1172#1370#0" expanded="false" />
-                <element signature="e#1556#1835#0" expanded="false" />
-                <element signature="e#1936#2310#0" expanded="false" />
-                <element signature="e#2797#3034#0" expanded="false" />
+                <element signature="e#1594#1936#0" expanded="false" />
+                <element signature="e#1685#1883#0" expanded="false" />
+                <element signature="e#2069#2348#0" expanded="false" />
+                <element signature="e#2451#2837#0" expanded="false" />
+                <element signature="e#3336#3575#0" expanded="false" />
+                <element signature="n#!!block;n#TextStyles#0" expanded="false" />
+                <element signature="n#!!block;n#PartyCast#0" expanded="false" />
+                <element signature="e#4993#5037#0" expanded="false" />
+                <element signature="e#5179#6406#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -53,41 +45,19 @@
       <file leaf-file-name="lobby.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/states/lobby.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state relative-caret-position="323">
+              <caret line="19" column="43" lean-forward="false" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="boot.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/states/boot.js">
+      <file leaf-file-name="game_debugger_main.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../../../../GameManagerSamples-master/game_debugger/receiver/bin/game_debugger_main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="25" lean-forward="false" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+            <state relative-caret-position="391">
+              <caret line="38" column="10" lean-forward="true" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="titleScreen.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/states/titleScreen.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="30" column="24" lean-forward="true" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="93" lean-forward="false" selection-start-line="15" selection-start-column="93" selection-end-line="15" selection-end-column="93" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -109,8 +79,8 @@
       <list>
         <option value="$PROJECT_DIR$/js/ass.js" />
         <option value="$PROJECT_DIR$/home.html" />
-        <option value="$PROJECT_DIR$/js/states/lobby.js" />
         <option value="$PROJECT_DIR$/js/states/boot.js" />
+        <option value="$PROJECT_DIR$/js/states/lobby.js" />
         <option value="$PROJECT_DIR$/js/states/titleScreen.js" />
         <option value="$PROJECT_DIR$/js/app.js" />
       </list>
@@ -156,6 +126,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -216,7 +187,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -341,26 +311,28 @@
       <workItem from="1496175910354" duration="206000" />
       <workItem from="1496176188981" duration="1032000" />
       <workItem from="1496217291276" duration="6065000" />
-      <workItem from="1496303030067" duration="852000" />
+      <workItem from="1496303030067" duration="1081000" />
+      <workItem from="1496305861449" duration="641000" />
+      <workItem from="1496306576757" duration="243000" />
+      <workItem from="1496735883221" duration="7448000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33091000" />
+    <option name="totallyTimeSpent" value="41652000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39906833" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39906833" sideWeight="0.49707174" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39906833" sideWeight="0.49707174" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -377,25 +349,12 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="30" lean-forward="false" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-          <folding>
-            <element signature="n#!!block;n#PlayerManager#0" expanded="false" />
-            <element signature="e#1081#1423#0" expanded="false" />
-            <element signature="e#1172#1370#0" expanded="false" />
-            <element signature="e#1556#1835#0" expanded="false" />
-            <element signature="e#1936#2310#0" expanded="false" />
-            <element signature="e#2797#3034#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/states/lobby.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -443,11 +402,15 @@
           <caret line="18" column="30" lean-forward="false" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
           <folding>
             <element signature="n#!!block;n#PlayerManager#0" expanded="false" />
-            <element signature="e#1081#1423#0" expanded="false" />
-            <element signature="e#1172#1370#0" expanded="false" />
-            <element signature="e#1556#1835#0" expanded="false" />
-            <element signature="e#1936#2310#0" expanded="false" />
-            <element signature="e#2797#3034#0" expanded="false" />
+            <element signature="e#1594#1936#0" expanded="false" />
+            <element signature="e#1685#1883#0" expanded="false" />
+            <element signature="e#2069#2348#0" expanded="false" />
+            <element signature="e#2451#2837#0" expanded="false" />
+            <element signature="e#3336#3575#0" expanded="false" />
+            <element signature="n#!!block;n#TextStyles#0" expanded="false" />
+            <element signature="n#!!block;n#PartyCast#0" expanded="false" />
+            <element signature="e#4993#5037#0" expanded="false" />
+            <element signature="e#5179#6406#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -520,11 +483,15 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#PlayerManager#0" expanded="false" />
-            <element signature="e#1081#1423#0" expanded="false" />
-            <element signature="e#1172#1370#0" expanded="false" />
-            <element signature="e#1556#1835#0" expanded="false" />
-            <element signature="e#1936#2310#0" expanded="false" />
-            <element signature="e#2797#3034#0" expanded="false" />
+            <element signature="e#1594#1936#0" expanded="false" />
+            <element signature="e#1685#1883#0" expanded="false" />
+            <element signature="e#2069#2348#0" expanded="false" />
+            <element signature="e#2451#2837#0" expanded="false" />
+            <element signature="e#3336#3575#0" expanded="false" />
+            <element signature="n#!!block;n#TextStyles#0" expanded="false" />
+            <element signature="n#!!block;n#PartyCast#0" expanded="false" />
+            <element signature="e#4993#5037#0" expanded="false" />
+            <element signature="e#5179#6406#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -597,11 +564,15 @@
           <caret line="65" column="2" lean-forward="false" selection-start-line="65" selection-start-column="2" selection-end-line="65" selection-end-column="2" />
           <folding>
             <element signature="n#!!block;n#PlayerManager#0" expanded="false" />
-            <element signature="e#1081#1423#0" expanded="false" />
-            <element signature="e#1172#1370#0" expanded="false" />
-            <element signature="e#1556#1835#0" expanded="false" />
-            <element signature="e#1936#2310#0" expanded="false" />
-            <element signature="e#2797#3034#0" expanded="false" />
+            <element signature="e#1594#1936#0" expanded="false" />
+            <element signature="e#1685#1883#0" expanded="false" />
+            <element signature="e#2069#2348#0" expanded="false" />
+            <element signature="e#2451#2837#0" expanded="false" />
+            <element signature="e#3336#3575#0" expanded="false" />
+            <element signature="n#!!block;n#TextStyles#0" expanded="false" />
+            <element signature="n#!!block;n#PartyCast#0" expanded="false" />
+            <element signature="e#4993#5037#0" expanded="false" />
+            <element signature="e#5179#6406#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -674,11 +645,15 @@
           <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#PlayerManager#0" expanded="false" />
-            <element signature="e#1081#1423#0" expanded="false" />
-            <element signature="e#1172#1370#0" expanded="false" />
-            <element signature="e#1556#1835#0" expanded="false" />
-            <element signature="e#1936#2310#0" expanded="false" />
-            <element signature="e#2797#3034#0" expanded="false" />
+            <element signature="e#1594#1936#0" expanded="false" />
+            <element signature="e#1685#1883#0" expanded="false" />
+            <element signature="e#2069#2348#0" expanded="false" />
+            <element signature="e#2451#2837#0" expanded="false" />
+            <element signature="e#3336#3575#0" expanded="false" />
+            <element signature="n#!!block;n#TextStyles#0" expanded="false" />
+            <element signature="n#!!block;n#PartyCast#0" expanded="false" />
+            <element signature="e#4993#5037#0" expanded="false" />
+            <element signature="e#5179#6406#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -784,6 +759,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/states/titleScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/states/boot.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -792,34 +775,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/states/titleScreen.js">
+    <entry file="file://$PROJECT_DIR$/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="30" column="24" lean-forward="true" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
-          <folding />
+        <state relative-caret-position="412">
+          <caret line="54" column="5" lean-forward="false" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
+          <folding>
+            <element signature="n#!!block;n#PlayerManager#0" expanded="false" />
+            <element signature="e#1594#1936#0" expanded="false" />
+            <element signature="e#1685#1883#0" expanded="false" />
+            <element signature="e#2069#2348#0" expanded="false" />
+            <element signature="e#2451#2837#0" expanded="false" />
+            <element signature="e#3336#3575#0" expanded="false" />
+            <element signature="n#!!block;n#TextStyles#0" expanded="false" />
+            <element signature="n#!!block;n#PartyCast#0" expanded="false" />
+            <element signature="e#4993#5037#0" expanded="false" />
+            <element signature="e#5179#6406#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/states/lobby.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state relative-caret-position="323">
+          <caret line="19" column="43" lean-forward="false" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/app.js">
+    <entry file="file://$PROJECT_DIR$/../../../../GameManagerSamples-master/game_debugger/receiver/bin/game_debugger_main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="142" column="1" lean-forward="false" selection-start-line="142" selection-start-column="1" selection-end-line="142" selection-end-column="1" />
-          <folding>
-            <element signature="n#!!block;n#PlayerManager#0" expanded="false" />
-            <element signature="e#1081#1423#0" expanded="false" />
-            <element signature="e#1172#1370#0" expanded="false" />
-            <element signature="e#1556#1835#0" expanded="false" />
-            <element signature="e#1936#2310#0" expanded="false" />
-            <element signature="e#2797#3034#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="391">
+          <caret line="38" column="10" lean-forward="true" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
