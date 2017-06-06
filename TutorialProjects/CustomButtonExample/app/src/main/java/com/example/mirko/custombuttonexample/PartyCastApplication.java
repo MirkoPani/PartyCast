@@ -18,7 +18,6 @@ public class PartyCastApplication extends Application implements CastConnectionM
         instance=this;
         castConnectionManager=new CastConnectionManager(this,this);
     }
-
     public static PartyCastApplication getInstance() {
         return instance;
     }

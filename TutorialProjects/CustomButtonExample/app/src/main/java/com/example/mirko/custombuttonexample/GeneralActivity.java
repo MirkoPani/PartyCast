@@ -1,5 +1,6 @@
 package com.example.mirko.custombuttonexample;
 
+import android.app.Application;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -62,6 +63,9 @@ public class GeneralActivity extends AppCompatActivity {
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        if(PartyCastApplication.getInstance().getCastConnectionManager().isConnectedToReceiver()){
+                            PartyCastApplication.getInstance().getCastConnectionManager().getGameManagerClient().sendPlayerQuitRequest(null);
+                        }
                         finish();
                     }
 

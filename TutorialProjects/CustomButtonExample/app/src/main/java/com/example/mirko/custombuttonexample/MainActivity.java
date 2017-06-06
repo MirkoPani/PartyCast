@@ -16,8 +16,11 @@ import android.widget.ImageView;
 import com.example.mirko.custombuttonexample.customviews.MyBounceInterpolator;
 import com.example.mirko.custombuttonexample.customviews.TypeWriter;
 import com.google.android.gms.cast.games.GameManagerClient;
+import com.google.android.gms.cast.games.GameManagerState;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
+
+import org.json.JSONObject;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -28,6 +31,7 @@ public class MainActivity extends GeneralActivity implements Observer{
     private static final String TAG = "MainActivity";
     private MenuItem mItem = null;
     private MediaRouteButton mediaRouteButton;
+    private GameManagerClient.Listener mListener = new PartyCastModel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +91,9 @@ public class MainActivity extends GeneralActivity implements Observer{
                 PartyCastApplication.getInstance().getCastConnectionManager();
         manager.startScan();
         manager.addObserver(this);
+        if(manager.isConnectedToReceiver()){
+            manager.getGameManagerClient().setListener(mListener);
+        }
     }
 
     protected void onPause() {
@@ -121,10 +128,13 @@ public class MainActivity extends GeneralActivity implements Observer{
                     }
                     else
                     {
-                        Log.d(TAG, "onResult: Creiamo la nuova activity!");
-                        Intent intent=new Intent(getBaseContext(),GameActivity.class);
+                        Log.d(TAG, "onResult: blocchiamo il bottone!");
+                        /*Intent intent=new Intent(getBaseContext(),GameActivity.class);
                         startActivity(intent);
-                        finish();
+                        finish();*/
+                        Button btnPlay = (Button)findViewById(R.id.buttonPlay);
+                        btnPlay.setClickable(false);
+                        btnPlay.setText(". . .");
                     }
                 }
             });
