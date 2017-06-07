@@ -35,7 +35,24 @@ function Player(id, name, avatar) {
 
 function PlayerManager() {
     this.players = [];
+    this.hostId="";
 };
+
+PlayerManager.prototype.setHost = function (id) {
+    this.hostId = id;
+    var message = { host: 'true' };
+    game.gameManager.sendGameMessageToPlayer(id, message);
+    console.log("Cambiato host in: " + id+" e inviato messaggio: "+message);
+};
+
+
+PlayerManager.prototype.isThereAHost = function (id) {
+    if (this.hostId != "") return true;
+    else return false;
+};
+
+
+
 
 PlayerManager.prototype.addPlayerToList = function (id, name, avatar) {
     this.players.push(new Player(id, name, avatar));
@@ -170,6 +187,11 @@ function PartyCast(gameManager) {
     this.gamePhaser.state.add("boot", bootState);
     this.gamePhaser.state.add("titleScreen", titleScreenState);
     this.gamePhaser.state.add("lobby", lobbyState);
+
+    //minigames
+    this.gamePhaser.state.add("touchMinigame", touchMinigame);
+
+    this.minigameManager = new MinigameManager();
 
 };
 

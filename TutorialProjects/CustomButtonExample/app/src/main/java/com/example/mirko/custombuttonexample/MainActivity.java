@@ -106,30 +106,31 @@ public class MainActivity extends GeneralActivity implements Observer {
     //Chiamato quando viene scelto il cast
     @Override
     public void update(Observable o, Object arg) {
-        Log.d(TAG, "update: test");
+        Log.d(TAG, "update: Siamo entrati in update");
 
         final GameManagerClient gameManagerClient = connectionManager.getGameManagerClient();
 
         if (connectionManager.isConnectedToReceiver() && gameManagerClient.getCurrentState().getConnectedControllablePlayers().size() == 0) {
+            Log.d(TAG, "update: Players Connected in totale= "+gameManagerClient.getCurrentState().getConnectedPlayers().size() );
             PartyCastApplication.getInstance().getCastConnectionManager().getGameManagerClient().setListener(mListener);
             Log.d(TAG, "update: siamo entrati e ora inviamo sendplayerequest");
-            //Notifichiamo il receiver che un giocatore è disponibile e salviamo il risultato
 
+            //Notifichiamo il receiver che un giocatore è disponibile e salviamo il risultato
             PendingResult<GameManagerClient.GameManagerResult> result = gameManagerClient.sendPlayerAvailableRequest(null);
 
             result.setResultCallback(new ResultCallback<GameManagerClient.GameManagerResult>() {
                 @Override
                 public void onResult(@NonNull GameManagerClient.GameManagerResult gameManagerResult) {
+
+                    //Errore
                     if (gameManagerResult.getStatus().isSuccess() == false ) {
                         PartyCastApplication.getInstance().getCastConnectionManager().disconnectFromReceiver(false);
                         Log.d(TAG, "onResult: Errore su result dopo sendPlayerAvaiable");
 
                         //Lobby chiusa
                     } else if(gameManagerResult.getStatus().isSuccess() && gameManagerClient.getCurrentState().getLobbyState()==2){
-                        Log.d(TAG, "onResult: blocchiamo il bottone xche lobby chiusa!");
-                        /*Intent intent=new Intent(getBaseContext(),GameActivity.class);
-                        startActivity(intent);
-                        finish();*/
+                        Log.d(TAG, "onResult: lobby chiusa. Aspettiamo che carichi!");
+
                         Button btnPlay = (Button) findViewById(R.id.buttonPlay);
                         btnPlay.setEnabled(false);
                         btnPlay.clearAnimation();
@@ -138,7 +139,7 @@ public class MainActivity extends GeneralActivity implements Observer {
                     }
                     //Lobby aperta
                     else if(gameManagerResult.getStatus().isSuccess() && gameManagerClient.getCurrentState().getLobbyState()==1){
-                        Log.d(TAG, "onResult: lobby aperta!");
+                        Log.d(TAG, "onResult: lobby era già aperta!.Creiamo nuova activity");
                         Intent intent=new Intent(getBaseContext(),GameActivity.class);
                         startActivity(intent);
                         finish();
@@ -154,10 +155,10 @@ public class MainActivity extends GeneralActivity implements Observer {
     private class LobbyListener implements GameManagerClient.Listener {
 
         @Override
-        public void onStateChanged(GameManagerState gameManagerState, GameManagerState gameManagerState1) {
-            Log.d(TAG, "StateChanged from " + gameManagerState + " to " + gameManagerState1);
-            if (gameManagerState.hasLobbyStateChanged(gameManagerState1)) {
-                Log.d(TAG, "onLobbyStateChange: " + gameManagerState);
+        public void onStateChanged(GameManagerState currentState, GameManagerState previousState) {
+            Log.d(TAG, "onStateChanged from " + currentState + " to " + previousState);
+            if (currentState.hasLobbyStateChanged(previousState)) {
+                Log.d(TAG, "Lobby has changed state: " + currentState);
                 Intent intent = new Intent(getBaseContext(), GameActivity.class);
                 startActivity(intent);
                 finish();
@@ -167,6 +168,7 @@ public class MainActivity extends GeneralActivity implements Observer {
         @Override
         public void onGameMessageReceived(String s, JSONObject jsonObject) {
             Log.d(TAG, "Message received: " + jsonObject.toString());
+
         }
 
     }

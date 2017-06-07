@@ -11,12 +11,14 @@ public class PartyCastApplication extends Application implements CastConnectionM
 
     public static PartyCastApplication instance;
     private CastConnectionManager castConnectionManager;
+    private PartyCastModel model;
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance=this;
         castConnectionManager=new CastConnectionManager(this,this);
+        model=new PartyCastModel();
     }
     public static PartyCastApplication getInstance() {
         return instance;
@@ -25,6 +27,11 @@ public class PartyCastApplication extends Application implements CastConnectionM
     public CastConnectionManager getCastConnectionManager() {
         return castConnectionManager;
     }
+
+    public PartyCastModel getModel() {
+        return model;
+    }
+
 
     @Override
     public String getCastAppId() {

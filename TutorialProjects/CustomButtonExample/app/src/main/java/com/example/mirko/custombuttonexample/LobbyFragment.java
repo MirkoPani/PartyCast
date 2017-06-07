@@ -14,16 +14,20 @@ import android.widget.EditText;
 
 import com.example.mirko.custombuttonexample.adapters.avatarSliderAdapter;
 import com.example.mirko.custombuttonexample.customviews.ButtonPlus;
+import com.example.mirko.custombuttonexample.event.Event;
+import com.example.mirko.custombuttonexample.event.HostChangedEvent;
+import com.example.mirko.custombuttonexample.messages.PlayerPlayingMessage;
 import com.example.mirko.custombuttonexample.messages.PlayerReadyMessage;
 import com.example.mirko.custombuttonexample.viewpages.DeactivableViewPager;
 import com.google.android.gms.cast.games.GameManagerClient;
 import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
 
 /**
  * Created by MirkoPortatile on 17/05/2017.
  */
 
-public class LobbyFragment extends Fragment {
+public class LobbyFragment extends Fragment implements Listener {
     GameManagerClient gmc;
     DeactivableViewPager viewPager;
     avatarSliderAdapter adapter;
@@ -49,6 +53,8 @@ public class LobbyFragment extends Fragment {
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //Aggiungiamo questa classe al listener di eventi
+        PartyCastApplication.getInstance().getModel().addListener(this);
 
         //bottone ready
         btnReady = (ButtonPlus) view.findViewById(R.id.ready);
@@ -62,10 +68,11 @@ public class LobbyFragment extends Fragment {
 
     }
 
+    //Manda il messaggio di ready
     private void sendReadyMessage(String name) {
         int avatar = viewPager.getCurrentItem() + 1;
-        PlayerReadyMessage prm = new PlayerReadyMessage(avatar,name);
-        PendingResult<GameManagerClient.GameManagerResult> result= gmc.sendPlayerReadyRequest(prm.toJSON());
+        PlayerReadyMessage prm = new PlayerReadyMessage(avatar, name);
+        PendingResult<GameManagerClient.GameManagerResult> result = gmc.sendPlayerReadyRequest(prm.toJSON());
 
         Log.d(TAG, "player " + name + " con avatar " + avatar + " ready!");
 
@@ -74,6 +81,38 @@ public class LobbyFragment extends Fragment {
         viewPager.setEnabled(false);
     }
 
+    public void sendPlayingMessage(){
+        PlayerPlayingMessage ppm=new PlayerPlayingMessage();
+
+        final CastConnectionManager ccm=PartyCastApplication.getInstance().getCastConnectionManager();
+        if(ccm.isConnectedToReceiver())
+        {
+            PendingResult<GameManagerClient.GameManagerResult> result = gmc.sendPlayerPlayingRequest(ppm.toJSON());
+
+            result.setResultCallback(
+                    new ResultCallback<GameManagerClient.GameManagerResult>() {
+                        @Override
+                        public void onResult(final GameManagerClient.GameManagerResult
+                                                     gameManagerResult) {
+                            if (gameManagerResult.getStatus().isSuccess()) {
+                                Log.d(TAG, "onResult: Playing! Avviamo il minigioco");
+                            } else {
+                                ccm.disconnectFromReceiver(false);
+                                Log.d(TAG, "onResult: Errore sendPlayerPlaying");
+                            }
+
+                        }
+                    });
+
+
+        }
+
+
+
+        Log.d(TAG, "sendPlayingMessage: ");
+    }
+
+    //Mostra l'input dialog per il testo
     protected void showInputDialog() {
 
         // get prompts.xml view
@@ -103,8 +142,38 @@ public class LobbyFragment extends Fragment {
         alert.show();
     }
 
+    @Override
+    public void listen(Event event) {
+        Log.d(TAG, "hostChanged: ");
+        //Siamo diventati host! Cambiamo il tasto
+        if (event instanceof HostChangedEvent)
+            if (PartyCastApplication.getInstance().getModel().getIsHost()) {
+
+                ((ButtonPlus) btnReady).setText("Inizia il gioco");
+                btnReady.setEnabled(true);
+                btnReady.setBackgroundResource(R.color.lightBlue);
+                btnReady.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        sendPlayingMessage();
+                    }
+                });
+
+            }
+    }
+
+
+
+    @Override
+    public void onDestroy() {
+
+        PartyCastApplication.getInstance().getModel().removeListener(this);
+        super.onDestroy();
+    }
 }
 
+
+//Animazione per il ViewPager
 class FadePageTransformer implements ViewPager.PageTransformer {
     public void transformPage(View view, float position) {
 

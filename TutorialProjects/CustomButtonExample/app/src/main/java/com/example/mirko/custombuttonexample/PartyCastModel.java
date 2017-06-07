@@ -1,32 +1,53 @@
 package com.example.mirko.custombuttonexample;
 
-import android.content.Intent;
 import android.util.Log;
 
-import java.util.Observable;
-import java.util.Observer;
+import com.example.mirko.custombuttonexample.event.Event;
+import com.example.mirko.custombuttonexample.event.HostChangedEvent;
 
-import com.google.android.gms.cast.games.GameManagerClient;
-import com.google.android.gms.cast.games.GameManagerState;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.json.JSONObject;
-
-import static android.content.ContentValues.TAG;
+import static com.google.android.gms.internal.zzt.TAG;
 
 /**
  * Created by nicola on 06/06/2017.
  */
 
-public class PartyCastModel implements GameManagerClient.Listener {
+public class PartyCastModel {
 
-    @Override
-    public void onStateChanged(GameManagerState gameManagerState, GameManagerState gameManagerState1) {
-        Log.d(TAG,"StateChanged from "+gameManagerState+" to "+gameManagerState1);
+    private boolean isHost;
+    private List<Listener> listeners = new ArrayList<Listener>();
+
+
+    public PartyCastModel() {
+        this.isHost = false;
     }
 
-    @Override
-    public void onGameMessageReceived(String s, JSONObject jsonObject) {
-        Log.d(TAG,"Message received: "+jsonObject.toString());
+    public void setHost(boolean value) {
+        Log.d(TAG, "setHost:");
+        this.isHost = value;
+
+        // Notify everybody that may be interested.
+        for (Listener hl : listeners) {
+            Log.d(TAG, "setHost: Notifichiamo listener "+hl);
+            hl.listen(new HostChangedEvent());
+        }
+    }
+    public boolean getIsHost() {
+        return isHost;
     }
 
+    public void addListener(Listener toAdd) {
+        listeners.add(toAdd);
+    }
+
+    public void removeListener(Listener toRemove) {
+        listeners.remove(toRemove);
+        Log.d(TAG, "onDestroy: Rimosso listener " + toRemove.toString());
+    }
+}
+
+interface Listener {
+    void listen(Event event);
 }
