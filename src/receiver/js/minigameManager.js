@@ -5,11 +5,20 @@ function MinigameManager() {
     this.currentMinigame = "";
 };
 
+MinigameManager.minigames=["gyroMinigame","micMinigame","shakeMinigame","touchMinigame"];
 
-MinigameManager.prototype.loadMinigame = function (minigameType) {
+//Carica un minigame specifico
+MinigameManager.prototype.loadSpecificMinigame = function (minigameType) {
+    game.gameManager.updateGameData({ minigame: minigameType }, true);
+    this.minigameCount++;
     game.gamePhaser.state.start(minigameType);
     this.currentMinigame = minigameType;
-    this.minigameCount++;
+
+}
+
+//Carica un minigame random
+MinigameManager.prototype.loadRandomMinigame = function () {
+    this.loadSpecificMinigame(this.getRandomMinigame());
 }
 
 MinigameManager.prototype.drawHud = function () {
@@ -20,6 +29,12 @@ MinigameManager.prototype.drawHud = function () {
 
 MinigameManager.prototype.hideHud = function () {
     this.minigameCountText.visible = false;
+}
+
+
+//Ritorna una stringa random tra i minigame presenti
+MinigameManager.prototype.getRandomMinigame=function() {
+    return MinigameManager.minigames[Math.floor(Math.random()*MinigameManager.minigames.length)];
 }
 
 MinigameManager.prototype.drawPlayersHud = function () {
