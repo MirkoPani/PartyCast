@@ -95,7 +95,7 @@ public class LobbyFragment extends Fragment implements Listener {
                         public void onResult(final GameManagerClient.GameManagerResult
                                                      gameManagerResult) {
                             if (gameManagerResult.getStatus().isSuccess()) {
-                                Log.d(TAG, "onResult: Playing! Avviamo il minigioco");
+                                Log.d(TAG, "onResult: Playing!");
                             } else {
                                 ccm.disconnectFromReceiver(false);
                                 Log.d(TAG, "onResult: Errore sendPlayerPlaying");
@@ -158,7 +158,6 @@ public class LobbyFragment extends Fragment implements Listener {
                         sendPlayingMessage();
                     }
                 });
-
             }
     }
 

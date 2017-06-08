@@ -8,13 +8,22 @@ import android.util.Log;
 
 import com.google.android.gms.cast.games.GameManagerClient;
 import com.google.android.gms.cast.games.GameManagerState;
+import com.google.android.gms.cast.games.PlayerInfo;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import static android.R.attr.fragment;
+import static android.drm.DrmStore.Action.PLAY;
 
 public class GameActivity extends GeneralActivity {
 
     private GameManagerClient.Listener mListener = new GameListener();
     private static final String TAG = "GameActivity";
+    private GameManagerClient gmc;
+    MiniGameManager mgm;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +34,16 @@ public class GameActivity extends GeneralActivity {
         //Set layout
         setContentView(R.layout.activity_game);
 
+        //settiamo il game manager client
+        gmc = PartyCastApplication.getInstance().getCastConnectionManager().getGameManagerClient();
+
+        //creiamo il mini game manager
+        mgm = new MiniGameManager();
 
         //Transizione fragments con animazione
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
         LobbyFragment fragment = new LobbyFragment();
         //fragmentTransaction.setCustomAnimations(R.anim.slide_from_right,R.anim.slide_out_right);
         fragmentTransaction.add(R.id.mainViewGroup, fragment);
@@ -39,16 +54,15 @@ public class GameActivity extends GeneralActivity {
     @Override
     public void onResume() {
         if (PartyCastApplication.getInstance().getCastConnectionManager().isConnectedToReceiver()) {
-            PartyCastApplication.getInstance().getCastConnectionManager().getGameManagerClient().setListener(mListener);
+            gmc.setListener(mListener);
         }
         super.onResume();
     }
 
     @Override
     public void onPause() {
-        GameManagerClient client = PartyCastApplication.getInstance().getCastConnectionManager().getGameManagerClient();
-        if (client != null) {
-            client.setListener(null);
+        if (gmc != null) {
+            gmc.setListener(null);
         }
         super.onPause();
     }
@@ -56,8 +70,22 @@ public class GameActivity extends GeneralActivity {
     private class GameListener implements GameManagerClient.Listener {
 
         @Override
-        public void onStateChanged(GameManagerState gameManagerState, GameManagerState gameManagerState1) {
+        public void onStateChanged(GameManagerState currentState, GameManagerState previousState) {
             Log.d(TAG, "onStateChanged: ");
+            /*if(currentState.getControllablePlayers().get(0).getPlayerState()==gmc.PLAYER_STATE_PLAYING && previousState.getControllablePlayers().get(0).getPlayerState()==gmc.PLAYER_STATE_READY ){
+                Log.d(TAG,"Test di cambio stato-> playing");
+            }*/
+            if(currentState.hasGameDataChanged(previousState)){
+                Log.d(TAG,"Game data changed in " + currentState.getGameData().toString());
+                JSONObject jobj = currentState.getGameData();
+                try {
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.mainViewGroup, mgm.setMiniGame(jobj.getString("minigame")));
+                    fragmentTransaction.commit();
+                } catch (JSONException e) {
+                    Log.d(TAG,"Errore nel json");
+                }
+            }
         }
 
         @Override
