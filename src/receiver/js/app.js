@@ -190,6 +190,10 @@ function PartyCast(gameManager) {
 
     //minigames
     this.gamePhaser.state.add("touchMinigame", touchMinigame);
+    this.gamePhaser.state.add("micMinigame", micMinigame);
+    this.gamePhaser.state.add("shakeMinigame", shakeMinigame);
+    this.gamePhaser.state.add("gyroMinigame", gyroMinigame);
+
 
     this.minigameManager = new MinigameManager();
 

@@ -48,32 +48,34 @@ var lobbyState = {
                 lobbyState.updatePlayerCountTitle();
             });
 
+
         //L'host ha chiesto di iniziare il gioco
-        game.gameManager.addEventListener(cast.receiver.games.EventType.PLAYER_PLAYING,
-            function (event) {
-                console.log("Ricevuto Richiesta PLAYING. id:" + event.playerInfo.playerId);
-
-                // Update all ready players to playing state.
-                var players = game.gameManager.getPlayers();
-                for (var i = 0; i < players.length; i++) {
-                    if (players[i].playerState == cast.receiver.games.PlayerState.READY) {
-                        game.gameManager.updatePlayerState(players[i].playerId,
-                            cast.receiver.games.PlayerState.PLAYING, null);
-                    }
-                }
-
-                //Settiamo la lobby close
-                game.gameManager.updateLobbyState(
-                    cast.receiver.games.LobbyState.CLOSED, null);
-
-                //Settiamo il gioco come running
-                game.gameManager.updateGameplayState(
-                    cast.receiver.games.GameplayState.RUNNING, null);
-
-                lobbyState.startMinigames();
-            });
+        game.gameManager.addEventListener(cast.receiver.games.EventType.PLAYER_PLAYING,lobbyState.handlePlayerPlaying);
 
     },
+    handlePlayerPlaying:function(event) {
+        console.log("Ricevuto Richiesta PLAYING. id:" + event.playerInfo.playerId);
+        // Update all ready players to playing state.
+        var players = game.gameManager.getPlayers();
+
+        game.gameManager.removeEventListener(cast.receiver.games.EventType.PLAYER_PLAYING,lobbyState.handlePlayerPlaying);
+
+        for (var i = 0; i < players.length; i++) {
+            if (players[i].playerState == cast.receiver.games.PlayerState.READY) {
+                game.gameManager.updatePlayerState(players[i].playerId,
+                    cast.receiver.games.PlayerState.PLAYING, null);
+                console.log("Ho appena aggiornato playing un utente");
+            }
+        }
+
+        //Settiamo la lobby close
+        game.gameManager.updateLobbyState(
+            cast.receiver.games.LobbyState.CLOSED, null);
+
+        lobbyState.startMinigames();
+        console.log("Ho appena chiamato startMinigame, sono in playing");
+    },
+
     handlePlayerReady: function (playerId, playerData) {
         game.gameManager.updatePlayerData(playerId, playerData);
         game.playerManager.addPlayerToList(playerId, playerData.Name, playerData.Avatar);
@@ -109,7 +111,12 @@ var lobbyState = {
     },
     startMinigames: function () {
         console.log("Startminigames");
-        game.minigameManager.loadMinigame("touchMinigame");
+        //Settiamo il gioco come running
+        game.gameManager.updateGameplayState(
+            cast.receiver.games.GameplayState.RUNNING, null);
+
+       //game.minigameManager.loadSpecificMinigame("touchMinigame");
+        game.minigameManager.loadRandomMinigame();
     },
     shutdown: function () {
         for (var i = 0; i < game.playerManager.players.length; i++) {
