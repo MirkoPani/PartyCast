@@ -14,28 +14,28 @@ MinigameManager.prototype.loadSpecificMinigame = function (minigameType) {
     game.gamePhaser.state.start(minigameType);
     this.currentMinigame = minigameType;
 
-}
+};
 
 //Carica un minigame random
 MinigameManager.prototype.loadRandomMinigame = function () {
     this.loadSpecificMinigame(this.getRandomMinigame());
-}
+};
 
 MinigameManager.prototype.drawHud = function () {
     console.log("drawhud");
     this.drawMinigameCountText();
     this.drawPlayersHud();
-}
+};
 
 MinigameManager.prototype.hideHud = function () {
     this.minigameCountText.visible = false;
-}
+};
 
 
 //Ritorna una stringa random tra i minigame presenti
 MinigameManager.prototype.getRandomMinigame=function() {
     return MinigameManager.minigames[Math.floor(Math.random()*MinigameManager.minigames.length)];
-}
+};
 
 MinigameManager.prototype.drawPlayersHud = function () {
     console.log("drawplayershud");
@@ -49,7 +49,7 @@ MinigameManager.prototype.drawPlayersHud = function () {
         console.log(game.playerManager.players[i].sprite.visible);
         console.log(game.playerManager.players[i].sprite.position);
  */   }
-}
+};
 
 MinigameManager.prototype.restorePlayers = function () {
     for (var i = 0; i < game.playerManager.players.length; i++) {
@@ -61,23 +61,47 @@ MinigameManager.prototype.restorePlayers = function () {
         game.playerManager.players[i].sprite.anchor.setTo(0.5,1);
         game.playerManager.players[i].nameTitle.anchor.setTo(0,1);
     }
-}
+};
 
 MinigameManager.prototype.drawMinigameCountText = function () {
     this.minigameCountText = game.gamePhaser.add.text(window.innerWidth / 40, window.innerHeight / 20, "#" + this.minigameCount, game.textStyles.titleStyle);
     this.minigameCountText.fontSize = 50;
-}
+};
 
-MinigameManager.prototype.showInstructions = function () {
+MinigameManager.prototype.showInstructions = function (instructionString) {
+    this.minigameInstructionText = game.gamePhaser.add.text(game.gamePhaser.world.centerX, game.gamePhaser.world.centerY, instructionString, game.textStyles.titleStyle);
+    this.minigameInstructionText.fontSize = 80;
+    this.minigameInstructionText.anchor.setTo(0.5, 0.5);
 
-}
+    //  Create our Timer
+    timer = game.gamePhaser.time.create(false);
+
+    //  Set a TimerEvent to occur after 3 seconds
+    timer.add(3000, function () {
+        this.minigameInstructionText.setText("3");
+    }, this);
+    timer.add(4000, function () {
+        this.minigameInstructionText.setText("2");
+    }, this);
+    timer.add(5000, function () {
+        this.minigameInstructionText.setText("1");
+    }, this);
+    timer.add(6000, function () {
+        this.minigameInstructionText.setText("GO!");
+        game.gamePhaser.add.tween(this.minigameInstructionText).to({alpha: 0}, 250, "Linear", true);
+    }, this);
+    //  Start the timer running - this is important!
+    //  It won't start automatically, allowing you to hook it to button events and the like.
+    timer.start();
+
+};
 
 MinigameManager.prototype.startTime = function () {
 
-}
+};
 
 MinigameManager.prototype.setTime = function (time) {
     this.time = time;
-}
+};
 
 
