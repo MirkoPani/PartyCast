@@ -2,6 +2,8 @@ package com.example.mirko.custombuttonexample;
 
 import android.app.Application;
 
+import com.google.android.gms.cast.games.GameManagerClient;
+
 /**
  * Created by MirkoPortatile on 16/05/2017.
  */
@@ -12,6 +14,7 @@ public class PartyCastApplication extends Application implements CastConnectionM
     public static PartyCastApplication instance;
     private CastConnectionManager castConnectionManager;
     private PartyCastModel model;
+    private EventManager eventManager;
 
     @Override
     public void onCreate() {
@@ -19,7 +22,27 @@ public class PartyCastApplication extends Application implements CastConnectionM
         instance=this;
         castConnectionManager=new CastConnectionManager(this,this);
         model=new PartyCastModel();
+        eventManager=new EventManager();
+
     }
+
+    public EventManager getEventManager() {
+        return eventManager;
+    }
+
+    public void setEventManager(EventManager eventManager) {
+        this.eventManager = eventManager;
+    }
+
+    public void addListenerToEventManager(GameManagerClient.Listener lis)
+    {
+        this.eventManager.registerListener(lis);
+    }
+    public void removeListenerToEventManager(GameManagerClient.Listener lis)
+    {
+        this.eventManager.removeListener(lis);
+    }
+
     public static PartyCastApplication getInstance() {
         return instance;
     }

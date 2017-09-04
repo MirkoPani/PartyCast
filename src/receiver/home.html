@@ -19,7 +19,28 @@
 
 </head>
 <body>
+<div class="wrapper" id="wrapper">
+    <table id="grid">
+    </table>
+</div>
 <div style="font-family:berlin; position:absolute; left:-10000px">Mock Text for Loading</div>
+
+<script>
+    // Create a grid of table items
+    var table = document.getElementById("grid");
+    var rows = 20;
+    var columns = rows;
+    var height = (window.innerHeight - 200*2) / rows;
+    for(var i=0; i<rows; i++) {
+        var row = table.insertRow();
+        for(var j=0; j<columns; j++) {
+            var cell = row.insertCell();
+            cell.setAttribute("id", (j+1) + i*rows);
+            cell.setAttribute("width", height);
+            cell.setAttribute("height", height);
+        }
+    }
+</script>
 <script src="js/minigameManager.js"></script>
 <script src="js/app.js"></script>
 </body>

@@ -22,7 +22,7 @@
 
     <style name="textavatar" parent="@android:style/Widget.TextView">
         <item name="com.example.mirko.custombuttonexample:font">berlin.ttf</item>
-
     </style>
+
 
 </resources>

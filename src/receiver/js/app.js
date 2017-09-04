@@ -31,6 +31,10 @@ function Player(id, name, avatar) {
     this.nameTitle = game.gamePhaser.add.text(0, 0, this.Name, game.textStyles.nameStyle);
     this.nameTitle.anchor.set(0.5);
     this.nameTitle.fontSize = 30;
+
+    //points
+    this.points=0;
+    this.minigamePoints=0;
 };
 
 function PlayerManager() {
@@ -99,6 +103,17 @@ PlayerManager.prototype.getPlayerPosition = function (id) {
     console.log("Player con questo id not found");
 }
 
+PlayerManager.prototype.getPlayerName = function (id) {
+    for (var i = 0; i < this.players.length; ++i) {
+        if (this.players[i].Id == id) {
+            return this.players[i].Name;
+        }
+    }
+    //Trovato nessun
+    return null;
+    console.log("Player con questo id not found");
+}
+
 //Imposta la posizione del giocatore
 PlayerManager.prototype.setPlayerPosition = function (id, x, y) {
     for (var i = 0; i < this.players.length; ++i) {
@@ -125,6 +140,28 @@ PlayerManager.prototype.setNamePosition = function (id, x, y) {
     console.log("Player con questo id not found");
 }
 
+PlayerManager.prototype.getPlayerArrayPosFromCastId = function (id) {
+    for (var i = 0; i < this.players.length; ++i) {
+        if (this.players[i].Id == id) {
+            return i;
+        }
+    }
+    //Trovato nessun
+    return null;
+    console.log("Player con questo id not found");
+}
+
+//Indica se il player e' gia presente
+PlayerManager.prototype.isPlayerAlreadyConnected = function (id) {
+    for (var i = 0; i < this.players.length; ++i) {
+        if (this.players[i].Id == id) {
+            return true;
+        }
+    }
+    return false;
+    console.log("Player con questo id not found");
+}
+
 //Rende visibile o meno l'ombra del giocatore
 PlayerManager.prototype.showShadowUnderPlayer = function (id, logicValue) {
     for (var i = 0; i < this.players.length; ++i) {
@@ -136,11 +173,46 @@ PlayerManager.prototype.showShadowUnderPlayer = function (id, logicValue) {
     console.log("Player con questo id not found");
 }
 
+PlayerManager.prototype.resetPlayers = function () {
+    this.players=[];
+};
+
+PlayerManager.prototype.addPointsTo=function(id,points)
+{
+    for (var i = 0; i < this.players.length; ++i) {
+        if (this.players[i].Id == id) {
+           this.players[i].points+=points;
+           return;
+        }
+    }
+
+    console.log("Player con questo id not found");
+}
+
+
 function TextStyles() {
 
     this.titleStyle = {
         font: "berlin",
         fill: "#ffcc5c",
+        stroke: "black",
+        strokeThickness: 5,
+        boundsAlignH: "center",
+        boundsAlignV: "middle"
+    };
+
+    this.errorStyle = {
+        font: "berlin",
+        fill: "#ff6a46",
+        stroke: "black",
+        strokeThickness: 5,
+        boundsAlignH: "center",
+        boundsAlignV: "middle"
+    };
+
+    this.timerStyle = {
+        font: "berlin",
+        fill: "#69ce30",
         stroke: "black",
         strokeThickness: 5,
         boundsAlignH: "center",

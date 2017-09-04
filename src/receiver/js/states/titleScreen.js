@@ -2,14 +2,14 @@
 var titleScreenState = {
 
     preload: function () {
-        game.gamePhaser.load.audio('wario', ['assets/wario.mp3']);
+      //  game.gamePhaser.load.audio('wario', ['assets/wario.mp3']);
         game.gamePhaser.load.image("logo", "img/logo.png");
         game.gamePhaser.load.atlasJSONHash('avatars', 'img/avatarsSheet.png', 'img/avatarsSheet.json');
         game.gamePhaser.load.image("shadow", "img/shadow.png");
     },
 
     create: function () {
-        game.music = game.gamePhaser.add.audio('wario');
+       // game.music = game.gamePhaser.add.audio('wario');
 
 
         game.gamePhaser.stage.backgroundColor = "#96ceb4";
@@ -23,7 +23,8 @@ var titleScreenState = {
          game.gamePhaser.state.start("lobby");
          }, 2000);*/
 
-        game.music.onDecoded.add(titleScreenState.loadComplete, this);
+      //  game.music.onDecoded.add(titleScreenState.loadComplete, this);
+        game.gamePhaser.state.start("lobby");
     },
 
     start: function () {
@@ -31,7 +32,7 @@ var titleScreenState = {
     },
 
     loadComplete: function () {
-        game.music.play();
+     //   game.music.play();
         game.gamePhaser.state.start("lobby");
     }
 }

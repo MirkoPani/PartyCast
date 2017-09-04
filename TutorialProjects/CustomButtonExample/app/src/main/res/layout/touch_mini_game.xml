@@ -1,13 +1,223 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.mirko.custombuttonexample.miniGameFragments.TouchMinigame">
+    android:background="#3db3ce">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/artistUI"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Touch me!" />
+        android:visibility="visible"
+        tools:context="com.example.mirko.custombuttonexample.miniGameFragments.TouchMinigame"
 
-</FrameLayout>
+        >
+
+        <com.example.mirko.custombuttonexample.customviews.CustomFontTextView
+            android:id="@+id/drawInstruction"
+            style="@style/textavatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="16dp"
+            android:shadowColor="#000000"
+            android:shadowDx="0.0"
+            android:shadowDy="0.0"
+            android:shadowRadius="2.0"
+            android:text="Tocca a te disegnare!"
+            android:textColor="#ffcc5c"
+            android:textSize="36sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Tocca a te disegnare!"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
+
+        <com.example.mirko.custombuttonexample.customviews.CustomFontTextView
+            android:id="@+id/wordToDraw"
+            style="@style/textavatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Parola da disegnare"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/drawInstruction"
+            tools:text="Parola da disegnare"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
+
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="133dp"
+            android:layout_height="21dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/colorText"
+            app:layout_constraintLeft_toRightOf="@+id/colorText"
+            android:layout_marginStart="8dp" />
+
+        <com.example.mirko.custombuttonexample.customviews.DrawView
+            android:id="@+id/drawView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/wordToDraw"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.example.mirko.custombuttonexample.customviews.CustomFontTextView
+            android:id="@+id/colorText"
+            style="@style/textavatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Colore:"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/drawView"
+            tools:text="Colore:"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btnClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Clear"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/drawView"
+            android:layout_marginEnd="8dp" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/indovinoUI"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.mirko.custombuttonexample.customviews.CustomFontTextView
+            android:id="@+id/chooseInstruction"
+            style="@style/textavatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="16dp"
+            android:shadowColor="#000000"
+            android:shadowDx="0.0"
+            android:shadowDy="0.0"
+            android:shadowRadius="2.0"
+            android:text="Cosa sta disegnando?"
+            android:textColor="#ffcc5c"
+            android:textSize="36sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Cosa sta disegnando?"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
+
+
+        <Button
+            android:id="@+id/btnChoose1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/chooseInstruction"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintVertical_bias="0.25" />
+
+        <Button
+            android:id="@+id/btnChoose2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            app:layout_constraintBaseline_toBaselineOf="@+id/btnChoose1"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/btnChoose1"
+            android:layout_marginLeft="8dp" />
+
+        <Button
+            android:id="@+id/btnChoose3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/btnChoose1" />
+
+        <Button
+            android:id="@+id/btnChoose4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            app:layout_constraintLeft_toRightOf="@+id/btnChoose3"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/btnChoose3"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <Button
+            android:id="@+id/btnChoose5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/btnChoose3" />
+
+        <Button
+            android:id="@+id/btnChoose6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            app:layout_constraintBaseline_toBaselineOf="@+id/btnChoose5"
+            app:layout_constraintLeft_toRightOf="@+id/btnChoose5"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

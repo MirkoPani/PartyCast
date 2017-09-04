@@ -8,13 +8,11 @@ import android.util.Log;
 
 import com.google.android.gms.cast.games.GameManagerClient;
 import com.google.android.gms.cast.games.GameManagerState;
-import com.google.android.gms.cast.games.PlayerInfo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static android.R.attr.fragment;
-import static android.drm.DrmStore.Action.PLAY;
+import static com.google.android.gms.cast.games.GameManagerClient.LOBBY_STATE_OPEN;
 
 public class GameActivity extends GeneralActivity {
 
@@ -54,7 +52,7 @@ public class GameActivity extends GeneralActivity {
     @Override
     public void onResume() {
         if (PartyCastApplication.getInstance().getCastConnectionManager().isConnectedToReceiver()) {
-            gmc.setListener(mListener);
+           PartyCastApplication.getInstance().addListenerToEventManager(mListener);
         }
         super.onResume();
     }
@@ -62,9 +60,17 @@ public class GameActivity extends GeneralActivity {
     @Override
     public void onPause() {
         if (gmc != null) {
-            gmc.setListener(null);
+            Log.d(TAG, "GAMEACTIVITY- " +
+                    "" +
+                    "onPause:");
+//            PartyCastApplication.getInstance().removeListenerToEventManager(mListener);
         }
         super.onPause();
+    }
+
+    public void onDestroy(){
+        PartyCastApplication.getInstance().removeListenerToEventManager(mListener);
+        super.onDestroy();
     }
 
     private class GameListener implements GameManagerClient.Listener {
@@ -75,17 +81,36 @@ public class GameActivity extends GeneralActivity {
             /*if(currentState.getControllablePlayers().get(0).getPlayerState()==gmc.PLAYER_STATE_PLAYING && previousState.getControllablePlayers().get(0).getPlayerState()==gmc.PLAYER_STATE_READY ){
                 Log.d(TAG,"Test di cambio stato-> playing");
             }*/
+
+            //Quando cambiano i dati relativi al gioco aka nuovo minigioco
             if(currentState.hasGameDataChanged(previousState)){
                 Log.d(TAG,"Game data changed in " + currentState.getGameData().toString());
                 JSONObject jobj = currentState.getGameData();
+
                 try {
+                    //se è un minigioco valido
+                if(jobj.getString("minigame").equals("none")==false) {
                     fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.mainViewGroup, mgm.setMiniGame(jobj.getString("minigame")));
                     fragmentTransaction.commit();
+                }
                 } catch (JSONException e) {
                     Log.d(TAG,"Errore nel json");
                 }
             }
+
+
+            if(currentState.hasLobbyStateChanged(previousState)){
+                Log.d(TAG,"Lobby data changed in " + currentState.getLobbyState());
+                //La lobby è stata riaperta, ci andiamo
+                if(currentState.getLobbyState()==LOBBY_STATE_OPEN) {
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.mainViewGroup, new LobbyFragment());
+                    fragmentTransaction.commit();
+                }
+            }
+
+
         }
 
         @Override

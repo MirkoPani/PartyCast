@@ -91,7 +91,8 @@ public class MainActivity extends GeneralActivity implements Observer {
         manager.startScan();
         manager.addObserver(this);
         if (manager.isConnectedToReceiver()) {
-            PartyCastApplication.getInstance().getCastConnectionManager().getGameManagerClient().setListener(mListener);
+           // PartyCastApplication.getInstance().getCastConnectionManager().getGameManagerClient().setListener(mListener);
+            PartyCastApplication.getInstance().addListenerToEventManager(mListener);
         }
     }
 
@@ -100,6 +101,7 @@ public class MainActivity extends GeneralActivity implements Observer {
                 PartyCastApplication.getInstance().getCastConnectionManager();
         manager.stopScan();
         manager.deleteObserver(this);
+        PartyCastApplication.getInstance().removeListenerToEventManager(mListener);
         super.onPause();
     }
 
@@ -112,7 +114,11 @@ public class MainActivity extends GeneralActivity implements Observer {
 
         if (connectionManager.isConnectedToReceiver() && gameManagerClient.getCurrentState().getConnectedControllablePlayers().size() == 0) {
             Log.d(TAG, "update: Players Connected in totale= "+gameManagerClient.getCurrentState().getConnectedPlayers().size() );
-            PartyCastApplication.getInstance().getCastConnectionManager().getGameManagerClient().setListener(mListener);
+
+            //Settiamo l'eventmanager come listener
+            PartyCastApplication.getInstance().getCastConnectionManager().getGameManagerClient().setListener(PartyCastApplication.getInstance().getEventManager());
+            PartyCastApplication.getInstance().addListenerToEventManager(mListener);
+
             Log.d(TAG, "update: siamo entrati e ora inviamo sendplayerequest");
 
             //Notifichiamo il receiver che un giocatore è disponibile e salviamo il risultato
@@ -140,6 +146,12 @@ public class MainActivity extends GeneralActivity implements Observer {
                     //Lobby aperta
                     else if(gameManagerResult.getStatus().isSuccess() && gameManagerClient.getCurrentState().getLobbyState()==1){
                         Log.d(TAG, "onResult: lobby era già aperta!.Creiamo nuova activity");
+
+                        //Associamo il nuovo listener
+
+                       // PartyCastApplication.getInstance().getCastConnectionManager().getGameManagerClient().setListener(PartyCastApplication.getInstance().getEventManager());
+
+
                         Intent intent=new Intent(getBaseContext(),GameActivity.class);
                         startActivity(intent);
                         finish();
@@ -168,7 +180,10 @@ public class MainActivity extends GeneralActivity implements Observer {
         @Override
         public void onGameMessageReceived(String s, JSONObject jsonObject) {
             Log.d(TAG, "Message received: " + jsonObject.toString());
-
+         /*   if(jsonObject.has("host")){
+                Log.d(TAG, "onGameMessageReceived: Siamo diventati host!");
+                PartyCastApplication.getInstance().getModel().setHost(true);
+            }*/
         }
 
     }
