@@ -6,9 +6,11 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import static java.lang.Math.abs;
+import static java.lang.Math.pow;
 
 public class MainActivity extends AppCompatActivity  implements SensorEventListener{
     //default value for the acceptance ranges
@@ -16,6 +18,14 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
     static float minAccepted=9.765f;
     SensorManager sm;
     TextView tv;
+    int flag=0;
+
+    float axisXval=-1;
+    float lastXval=-1;
+    float axisYval=-1;
+    float lastYval=-1;
+    float axisZval=-1;
+    float lastZval=-1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +50,23 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
     //per la gestione dei sensori
     @Override
     public void onSensorChanged(SensorEvent event) {
-        float axisXval = abs(event.values[0]);
-        float axisYval = abs(event.values[1]);
-        float axisZval = abs(event.values[2]);
+        if(flag==0){
+            axisXval  = abs(event.values[0]);
+            axisYval = abs(event.values[1]);
+            axisZval = abs(event.values[2]);
+            lastXval = axisXval;
+            lastYval = axisYval;
+            lastZval = axisZval;
+            ++flag;
+        }
+        else{
+            lastXval = axisXval;
+            lastYval = axisYval;
+            lastZval = axisZval;
+            axisXval = abs(event.values[0]);
+            axisYval = abs(event.values[1]);
+            axisZval = abs(event.values[2]);
+        }
         if(axisXval >= minAccepted && axisXval <= maxAccepted){
             tv.setText("Device in landscape mode");
         }
@@ -53,7 +77,11 @@ public class MainActivity extends AppCompatActivity  implements SensorEventListe
             tv.setText("Device outstretched");
         }
         else{
-            tv.setText("stabilize the device");
+            Double gravity = Math.sqrt(pow(axisXval,2)+pow(axisYval,2)+pow(axisZval,2));
+            Log.d("Data taken:","x "+axisXval+" y "+axisYval+" z "+axisZval);
+            Log.d("Data taken before :","x "+lastXval+" y "+lastYval+" z "+lastZval);
+            String s="";
+            tv.setText(s);
         }
     }
 

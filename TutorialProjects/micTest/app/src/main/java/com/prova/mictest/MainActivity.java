@@ -25,11 +25,14 @@ public class MainActivity extends AppCompatActivity {
     Double meanAmpl=0.0;
     int counter=0;
     Double eps = 2.32;
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        tv = (TextView)findViewById(R.id.text);
 
         int sampleRate=44100;
         try{
@@ -65,15 +68,17 @@ public class MainActivity extends AppCompatActivity {
                             if(rec==1){
                                 rec=0;
                                 ++counter;
+                                //setText("Count: "+counter);
+
                                 Log.d("TryngToBlow","have you finished to blow?");
                             }
                         }
                     }
-                    try {
+                    /*try {
                         Thread.sleep(0);
                     } catch (InterruptedException e) {
                         Log.d("SLEEPTHREAD", "non dorme o dorme troppo");
-                    }
+                    }*/
                 }
             }
         }, "AudioRecorder thread");
@@ -111,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     Log.d("Test","Number of Blow reached: "+counter);
+                    setText("Number of Blow reached: "+counter);
                     state=0;
                     btn.setText("Sample again?");
                     counter=0;
@@ -137,5 +143,8 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         audio.stop();
         //recThread.stop();
+    }
+    public void setText(String s){
+        tv.setText(s);
     }
 }
