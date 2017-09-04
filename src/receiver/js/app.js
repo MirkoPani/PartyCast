@@ -33,20 +33,20 @@ function Player(id, name, avatar) {
     this.nameTitle.fontSize = 30;
 
     //points
-    this.points=0;
-    this.minigamePoints=0;
+    this.points = 0;
+    this.minigamePoints = 0;
 };
 
 function PlayerManager() {
     this.players = [];
-    this.hostId="";
+    this.hostId = "";
 };
 
 PlayerManager.prototype.setHost = function (id) {
     this.hostId = id;
-    var message = { host: 'true' };
+    var message = {host: 'true'};
     game.gameManager.sendGameMessageToPlayer(id, message);
-    console.log("Cambiato host in: " + id+" e inviato messaggio: "+message);
+    console.log("Cambiato host in: " + id + " e inviato messaggio: " + message);
 };
 
 
@@ -54,8 +54,6 @@ PlayerManager.prototype.isThereAHost = function (id) {
     if (this.hostId != "") return true;
     else return false;
 };
-
-
 
 
 PlayerManager.prototype.addPlayerToList = function (id, name, avatar) {
@@ -73,7 +71,7 @@ PlayerManager.prototype.removePlayerFromList = function (id) {
             return
         }
     }
-   // console.log("Player con questo id not found");
+    // console.log("Player con questo id not found");
 }
 
 //Setta posizione e rende visibile il giocatore
@@ -174,19 +172,37 @@ PlayerManager.prototype.showShadowUnderPlayer = function (id, logicValue) {
 }
 
 PlayerManager.prototype.resetPlayers = function () {
-    this.players=[];
+    this.players = [];
 };
 
-PlayerManager.prototype.addPointsTo=function(id,points)
-{
+PlayerManager.prototype.addPointsTo = function (id, points) {
     for (var i = 0; i < this.players.length; ++i) {
         if (this.players[i].Id == id) {
-           this.players[i].points+=points;
-           return;
+            this.players[i].points += points;
+            return;
         }
     }
 
     console.log("Player con questo id not found");
+}
+
+PlayerManager.prototype.addMinigamePointsTo = function (id, points) {
+    for (var i = 0; i < this.players.length; ++i) {
+        if (this.players[i].Id == id) {
+            this.players[i].minigamePoints += points;
+            return;
+        }
+    }
+
+    console.log("Player con questo id not found");
+}
+
+//Porta i minigamepoints di tutti i giocatori a 0 e allo stesso tempo li somma al totale
+PlayerManager.prototype.resetAndSumMinigamePoints = function () {
+    for (var i = 0; i < this.players.length; ++i) {
+        this.players[i].points += this.players[i].minigamePoints;
+        this.players[i].minigamePoints = 0;
+    }
 }
 
 

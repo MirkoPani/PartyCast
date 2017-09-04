@@ -172,7 +172,7 @@ var shakeMinigame = {
         console.log('stopClock - Tempo fermato');
     },
     initClock: function () {
-        shakeMinigame.clockseconds = 50 + 1; // set countdown seconds, +1 because initial display will also decrease with 1
+        shakeMinigame.clockseconds = 30 + 1; // set countdown seconds, +1 because initial display will also decrease with 1
         this.updateDisplay(); // initial display
         shakeMinigame.clocktimer.start();
     },
@@ -187,8 +187,7 @@ var shakeMinigame = {
             console.log('updateClock - Tempo scaduto');
             shakeMinigame.clocktext.text = 'Tempo scaduto!';
 
-            //Finito il gioco
-            game.gamePhaser.time.events.remove(shakeMinigame.myLoop);
+
             this.endGame();
 
         } else {
@@ -202,6 +201,13 @@ var shakeMinigame = {
 
     },
     endGame:function(){
+        //Finito il gioco
+        game.gamePhaser.time.events.remove(shakeMinigame.myLoop);
+
+        game.gameManager.removeEventListener(cast.receiver.games.EventType.GAME_MESSAGE_RECEIVED, shakeMinigame.checkShake);
+
+
+        game.minigameManager.showPointsTable();
 
     }
 

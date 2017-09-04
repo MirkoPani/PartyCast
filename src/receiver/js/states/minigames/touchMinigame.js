@@ -102,7 +102,7 @@ var touchMinigame = {
                     if (message.guess == touchMinigame.indCorretto) {
                         //Aggiungiamo un punto se ha fatto giusto
                         console.log("Il giocatore con id: " + event.playerInfo.playerId + " ha fatto giusto.");
-                        game.playerManager.addPointsTo(event.playerInfo.playerId, 1);
+                        game.playerManager.addMinigamePointsTo(event.playerInfo.playerId, 50);
                     }
                     //Il player ha sbagliato
                     else {
@@ -160,6 +160,10 @@ var touchMinigame = {
         game.gameManager.removeEventListener(cast.receiver.games.EventType.PLAYER_DROPPED, game.minigameManager.handlePlayerDisconnected);
         game.gameManager.removeEventListener(cast.receiver.games.EventType.PLAYER_QUIT, game.minigameManager.handlePlayerDisconnected);
 
+        //Griglia
+        var wrapper = document.getElementById("wrapper");
+        wrapper.style.visibility = "hidden";
+
     },
     checkAllGuessed: function () {
         //Hanno guessato tutti. Finiamo il turno
@@ -191,23 +195,18 @@ var touchMinigame = {
 
         //Se si è fatto un turno a testa cambiamo il gioco
         if (touchMinigame.turnNumber >= game.playerManager.players.length - 1) {
-            touchMinigame.minigameInstructionText = game.gamePhaser.add.text(game.gamePhaser.world.centerX, game.gamePhaser.world.centerY, "Gioco finito! Cambio minigioco", game.textStyles.titleStyle);
+/*            touchMinigame.minigameInstructionText = game.gamePhaser.add.text(game.gamePhaser.world.centerX, game.gamePhaser.world.centerY, "Gioco finito! Cambio minigioco", game.textStyles.titleStyle);
             touchMinigame.minigameInstructionText.fontSize = 80;
             touchMinigame.minigameInstructionText.anchor.setTo(0.5, 0.5);
+*/
+                //Mostriamo tabella
+                game.minigameManager.showPointsTable();
 
-            //  Create our Timer
-            var timer2 = game.gamePhaser.time.create(false);
-
-            //  Set a TimerEvent to occur after 3 seconds
-            timer2.add(3000, function () {
-                game.minigameManager.loadSpecificMinigame("shakeMinigame");
-            }, this);
-            timer2.start();
 
         }
         //Altrimenti nuovo turno
         else {
-            touchMinigame.minigameInstructionText = game.gamePhaser.add.text(game.gamePhaser.world.centerX, game.gamePhaser.world.centerY, "Turno finito! Cambio ruoli..", game.textStyles.titleStyle);
+            touchMinigame.minigameInstructionText= game.gamePhaser.add.text(game.gamePhaser.world.centerX, game.gamePhaser.world.centerY, "Turno finito! Cambio ruoli", game.textStyles.titleStyle);
             touchMinigame.minigameInstructionText.fontSize = 80;
             touchMinigame.minigameInstructionText.anchor.setTo(0.5, 0.5);
 

@@ -4,9 +4,14 @@ function MinigameManager() {
     this.minigameCount = 0;
     this.currentMinigame = "";
 
-};
 
-MinigameManager.minigames = ["gyroMinigame", "micMinigame", "shakeMinigame", "touchMinigame"];
+    this.pointsTable={};
+    this.minigamePointsTableText="";
+        this.pointsTableText="";
+       this.totalPointsTableText="";
+};
+//"gyroMinigame", "micMinigame",
+MinigameManager.minigames = ["shakeMinigame", "touchMinigame"];
 
 //Carica un minigame specifico
 MinigameManager.prototype.loadSpecificMinigame = function (minigameType) {
@@ -19,7 +24,8 @@ MinigameManager.prototype.loadSpecificMinigame = function (minigameType) {
 
 //Carica un minigame random
 MinigameManager.prototype.loadRandomMinigame = function () {
-    this.loadSpecificMinigame(this.getRandomMinigame());
+   // this.loadSpecificMinigame(this.getRandomMinigame());
+    this.loadSpecificMinigame(MinigameManager.minigames[game.minigameManager.minigameCount % MinigameManager.minigames.length]);
 };
 
 MinigameManager.prototype.drawHud = function () {
@@ -150,6 +156,104 @@ MinigameManager.prototype.resetGame = function () {
     }, this);
 
     timer.start();
+
+
+}
+MinigameManager.prototype.showPointsTable=function(){
+
+    var altezzaTab=window.innerHeight-(window.innerHeight*.4);
+    var larghezzaTab= window.innerWidth-(window.innerWidth*.4);
+    var posXTab=game.gamePhaser.world.centerX-(larghezzaTab/2);
+    var posYTab=game.gamePhaser.world.centerY-(altezzaTab/2);
+
+    var riservato=100;
+    var fattore=(altezzaTab-riservato)/game.playerManager.players.length;
+    var inizioLinea={X:posXTab+50,Y:posYTab+riservato};
+    var fineLinea={X:posXTab+larghezzaTab-50,Y:posYTab+riservato};
+
+    var lunghezzaLinea=fineLinea.Y-inizioLinea.Y;
+    var centroLinea=posXTab+(larghezzaTab/2);
+    var trequarti=centroLinea+(larghezzaTab/4);
+
+    this.pointsTable = game.gamePhaser.add.graphics(0,0);
+    this.pointsTable.lineStyle(1);
+
+    //rettangolo
+    this.pointsTable.beginFill(0x333333, 0.5);
+    this.pointsTable.drawRect(posXTab, posYTab, larghezzaTab, altezzaTab);
+    this.pointsTable.endFill();
+
+    //Linea
+    this.pointsTable.beginFill(0x666666, 1);
+    this.pointsTable.moveTo(inizioLinea.X,inizioLinea.Y);
+    this.pointsTable.lineTo(fineLinea.X,fineLinea.Y);
+    this.pointsTable.endFill();
+
+    //Minigame
+    this.minigamePointsTableText=game.gamePhaser.add.text(centroLinea+20, posYTab+riservato/2, "Minigame", game.textStyles.titleStyle);
+    this.minigamePointsTableText.fontSize = 25;
+    this.minigamePointsTableText.anchor.setTo(0, 0.5);
+
+    //Total
+    this.totalPointsTableText=game.gamePhaser.add.text(trequarti+20, posYTab+riservato/2, "Total", game.textStyles.titleStyle);
+    this.totalPointsTableText.fontSize = 25;
+    this.totalPointsTableText.anchor.setTo(0, 0.5);
+
+    //Points
+    this.pointsTableText=game.gamePhaser.add.text(posXTab+20, posYTab+riservato/2, "Points", game.textStyles.titleStyle);
+    this.pointsTableText.fontSize = 25;
+    this.pointsTableText.anchor.setTo(0, 0.5);
+
+
+    var miniPointsarrayText=[];
+    var pointsArrayText=[]
+
+    //Portiamo sopra
+    game.gamePhaser.world.bringToTop(this.minigamePointsTableText);
+    game.gamePhaser.world.bringToTop(this.totalPointsTableText);
+    game.gamePhaser.world.bringToTop(this.pointsTableText);
+
+    console.log("fattore: "+fattore);
+    console.log("posY: "+posYTab);
+    console.log("Altezza: "+altezzaTab);
+    for (var i = 0; i < game.playerManager.players.length; i++) {
+        var posy= posYTab+riservato+fattore* (i+1)-(game.playerManager.players[i].sprite.height/game.playerManager.players.length);
+        game.playerManager.setPlayerPosition(game.playerManager.players[i].Id, posXTab+50,posy);
+        game.playerManager.setNamePosition(game.playerManager.players[i].Id, posXTab+50 + game.playerManager.players[i].sprite.width, posYTab+riservato+fattore* (i+1)-(game.playerManager.players[i].sprite.height/game.playerManager.players.length));
+        game.playerManager.showPlayer(game.playerManager.players[i].Id, true);
+
+        //Mostriamo punti minigioco
+        miniPointsarrayText.push(game.gamePhaser.add.text(centroLinea+50, posy,"+"+game.playerManager.players[i].minigamePoints, game.textStyles.titleStyle));
+        miniPointsarrayText[i].fontSize = 25;
+        miniPointsarrayText[i].anchor.setTo(0, 1);
+        pointsArrayText.push(game.gamePhaser.add.text(trequarti+50, posy, game.playerManager.players[i].points, game.textStyles.titleStyle));
+        pointsArrayText[i].fontSize = 25;
+        pointsArrayText[i].anchor.setTo(0, 1);
+    }
+
+    //  Create our Timer
+    var timer2 = game.gamePhaser.time.create(false);
+
+    //  Set a TimerEvent to occur after 3 seconds
+    timer2.add(4000, function () {
+
+        game.playerManager.resetAndSumMinigamePoints();
+        for (var i = 0; i < game.playerManager.players.length; i++) {
+            //Mostriamo punti minigioco
+            miniPointsarrayText[i].setText(game.playerManager.players[i].minigamePoints);
+
+            pointsArrayText[i].setText(game.playerManager.players[i].points);
+            pointsArrayText[i].setStyle(game.textStyles.nameStyle);
+            pointsArrayText[i].fontSize = 25;
+
+        }
+    }, this);
+    timer2.add(7000, function () {
+        //CAMBIAGIOCO
+        game.minigameManager.loadRandomMinigame();
+    }, this);
+
+    timer2.start();
 
 
 }
