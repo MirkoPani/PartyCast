@@ -5,26 +5,37 @@ function MinigameManager() {
     this.currentMinigame = "";
 
 
-    this.pointsTable={};
-    this.minigamePointsTableText="";
-        this.pointsTableText="";
-       this.totalPointsTableText="";
+    this.pointsTable = {};
+    this.minigamePointsTableText = "";
+    this.pointsTableText = "";
+    this.totalPointsTableText = "";
 };
+
+MinigameManager.numMinHostChoose = 0;
+
 //"gyroMinigame", "micMinigame",
 MinigameManager.minigames = ["shakeMinigame", "touchMinigame"];
 
 //Carica un minigame specifico
 MinigameManager.prototype.loadSpecificMinigame = function (minigameType) {
-    game.gameManager.updateGameData({minigame: minigameType});
-    this.minigameCount++;
-    game.gamePhaser.state.start(minigameType);
-    this.currentMinigame = minigameType;
 
+    //Se il numero di minigiochi e' uguale al numero che aveva scelto host è finito il gioco
+    if (MinigameManager.numMinHostChoose == this.minigameCount) {
+        console.log("GIOCO FINITO");
+        game.gamePhaser.state.start("endGame");
+    }
+    //Normale flow
+    else {
+        game.gameManager.updateGameData({minigame: minigameType});
+        this.minigameCount++;
+        game.gamePhaser.state.start(minigameType);
+        this.currentMinigame = minigameType;
+    }
 };
 
 //Carica un minigame random
 MinigameManager.prototype.loadRandomMinigame = function () {
-   // this.loadSpecificMinigame(this.getRandomMinigame());
+    // this.loadSpecificMinigame(this.getRandomMinigame());
     this.loadSpecificMinigame(MinigameManager.minigames[game.minigameManager.minigameCount % MinigameManager.minigames.length]);
 };
 
@@ -78,35 +89,35 @@ MinigameManager.prototype.drawMinigameCountText = function () {
 
 MinigameManager.prototype.showInstructions = function (instructionString) {
     /*this.minigameInstructionText = game.gamePhaser.add.text(game.gamePhaser.world.centerX, game.gamePhaser.world.centerY, instructionString, game.textStyles.titleStyle);
-    this.minigameInstructionText.fontSize = 80;
-    this.minigameInstructionText.anchor.setTo(0.5, 0.5);
+     this.minigameInstructionText.fontSize = 80;
+     this.minigameInstructionText.anchor.setTo(0.5, 0.5);
 
-    //  Create our Timer
-    timer = game.gamePhaser.time.create(false);
+     //  Create our Timer
+     timer = game.gamePhaser.time.create(false);
 
-    //  Set a TimerEvent to occur after 3 seconds
-    timer.add(3000, function () {
-        this.minigameInstructionText.setText("3");
-    }, this);
-    timer.add(4000, function () {
-        this.minigameInstructionText.setText("2");
-    }, this);
-    timer.add(5000, function () {
-        this.minigameInstructionText.setText("1");
-    }, this);
-    timer.add(6000, function () {
-        this.minigameInstructionText.setText("GO!");
-        game.gamePhaser.add.tween(this.minigameInstructionText).to({alpha: 0}, 250, "Linear", true);
+     //  Set a TimerEvent to occur after 3 seconds
+     timer.add(3000, function () {
+     this.minigameInstructionText.setText("3");
+     }, this);
+     timer.add(4000, function () {
+     this.minigameInstructionText.setText("2");
+     }, this);
+     timer.add(5000, function () {
+     this.minigameInstructionText.setText("1");
+     }, this);
+     timer.add(6000, function () {
+     this.minigameInstructionText.setText("GO!");
+     game.gamePhaser.add.tween(this.minigameInstructionText).to({alpha: 0}, 250, "Linear", true);
 
-        if(this.currentMinigame=="touchMinigame"){
-            var wrapper = document.getElementById("wrapper");
-            wrapper.style.visibility = "visible" ;
-        }
-    }, this);
-    //  Start the timer running - this is important!
-    //  It won't start automatically, allowing you to hook it to button events and the like.
-    timer.start();
-*/
+     if(this.currentMinigame=="touchMinigame"){
+     var wrapper = document.getElementById("wrapper");
+     wrapper.style.visibility = "visible" ;
+     }
+     }, this);
+     //  Start the timer running - this is important!
+     //  It won't start automatically, allowing you to hook it to button events and the like.
+     timer.start();
+     */
 };
 
 MinigameManager.prototype.startTime = function () {
@@ -125,7 +136,7 @@ MinigameManager.prototype.handlePlayerDisconnected = function (event) {
 
     //Check numero di giocatori
     if (game.playerManager.players.length < 2) {
-        this.minigameInstructionText = game.gamePhaser.add.text(game.gamePhaser.world.centerX, window.innerHeight - (window.innerHeight / 25)-200, "Troppi pochi player! Ritorno alla lobby", game.textStyles.errorStyle);
+        this.minigameInstructionText = game.gamePhaser.add.text(game.gamePhaser.world.centerX, window.innerHeight - (window.innerHeight / 25) - 200, "Troppi pochi player! Ritorno alla lobby", game.textStyles.errorStyle);
         this.minigameInstructionText.fontSize = 30;
         this.minigameInstructionText.anchor.setTo(0.5, 0.5);
 
@@ -137,6 +148,8 @@ MinigameManager.prototype.handlePlayerDisconnected = function (event) {
 
 //Riporta il gioco alla lobby e azzera i giocatori
 MinigameManager.prototype.resetGame = function () {
+
+    this.minigameCount = 0;
 
     //Nascondiamo la griglia per il touchminigame
     var wrapper = document.getElementById("wrapper");
@@ -162,27 +175,27 @@ MinigameManager.prototype.resetGame = function () {
 
 
 }
-MinigameManager.prototype.showPointsTable=function(){
+MinigameManager.prototype.showPointsTable = function () {
 
     //Notifichiamo che mostriamo istruzioni
     game.gameManager.updateGameplayState(
         cast.receiver.games.GameplayState.SHOWING_INFO_SCREEN, false);
 
-    var altezzaTab=window.innerHeight-(window.innerHeight*.4);
-    var larghezzaTab= window.innerWidth-(window.innerWidth*.4);
-    var posXTab=game.gamePhaser.world.centerX-(larghezzaTab/2);
-    var posYTab=game.gamePhaser.world.centerY-(altezzaTab/2);
+    var altezzaTab = window.innerHeight - (window.innerHeight * .4);
+    var larghezzaTab = window.innerWidth - (window.innerWidth * .4);
+    var posXTab = game.gamePhaser.world.centerX - (larghezzaTab / 2);
+    var posYTab = game.gamePhaser.world.centerY - (altezzaTab / 2);
 
-    var riservato=100;
-    var fattore=(altezzaTab-riservato)/game.playerManager.players.length;
-    var inizioLinea={X:posXTab+50,Y:posYTab+riservato};
-    var fineLinea={X:posXTab+larghezzaTab-50,Y:posYTab+riservato};
+    var riservato = 100;
+    var fattore = (altezzaTab - riservato) / game.playerManager.players.length;
+    var inizioLinea = {X: posXTab + 50, Y: posYTab + riservato};
+    var fineLinea = {X: posXTab + larghezzaTab - 50, Y: posYTab + riservato};
 
-    var lunghezzaLinea=fineLinea.Y-inizioLinea.Y;
-    var centroLinea=posXTab+(larghezzaTab/2);
-    var trequarti=centroLinea+(larghezzaTab/4);
+    var lunghezzaLinea = fineLinea.Y - inizioLinea.Y;
+    var centroLinea = posXTab + (larghezzaTab / 2);
+    var trequarti = centroLinea + (larghezzaTab / 4);
 
-    this.pointsTable = game.gamePhaser.add.graphics(0,0);
+    this.pointsTable = game.gamePhaser.add.graphics(0, 0);
     this.pointsTable.lineStyle(1);
 
     //rettangolo
@@ -192,48 +205,48 @@ MinigameManager.prototype.showPointsTable=function(){
 
     //Linea
     this.pointsTable.beginFill(0x666666, 1);
-    this.pointsTable.moveTo(inizioLinea.X,inizioLinea.Y);
-    this.pointsTable.lineTo(fineLinea.X,fineLinea.Y);
+    this.pointsTable.moveTo(inizioLinea.X, inizioLinea.Y);
+    this.pointsTable.lineTo(fineLinea.X, fineLinea.Y);
     this.pointsTable.endFill();
 
     //Minigame
-    this.minigamePointsTableText=game.gamePhaser.add.text(centroLinea+20, posYTab+riservato/2, "Minigame", game.textStyles.titleStyle);
+    this.minigamePointsTableText = game.gamePhaser.add.text(centroLinea + 20, posYTab + riservato / 2, "Minigame", game.textStyles.titleStyle);
     this.minigamePointsTableText.fontSize = 25;
     this.minigamePointsTableText.anchor.setTo(0, 0.5);
 
     //Total
-    this.totalPointsTableText=game.gamePhaser.add.text(trequarti+20, posYTab+riservato/2, "Total", game.textStyles.titleStyle);
+    this.totalPointsTableText = game.gamePhaser.add.text(trequarti + 20, posYTab + riservato / 2, "Total", game.textStyles.titleStyle);
     this.totalPointsTableText.fontSize = 25;
     this.totalPointsTableText.anchor.setTo(0, 0.5);
 
     //Points
-    this.pointsTableText=game.gamePhaser.add.text(posXTab+20, posYTab+riservato/2, "Points", game.textStyles.titleStyle);
+    this.pointsTableText = game.gamePhaser.add.text(posXTab + 20, posYTab + riservato / 2, "Points", game.textStyles.titleStyle);
     this.pointsTableText.fontSize = 25;
     this.pointsTableText.anchor.setTo(0, 0.5);
 
 
-    var miniPointsarrayText=[];
-    var pointsArrayText=[]
+    var miniPointsarrayText = [];
+    var pointsArrayText = []
 
     //Portiamo sopra
     game.gamePhaser.world.bringToTop(this.minigamePointsTableText);
     game.gamePhaser.world.bringToTop(this.totalPointsTableText);
     game.gamePhaser.world.bringToTop(this.pointsTableText);
 
-    console.log("fattore: "+fattore);
-    console.log("posY: "+posYTab);
-    console.log("Altezza: "+altezzaTab);
+    console.log("fattore: " + fattore);
+    console.log("posY: " + posYTab);
+    console.log("Altezza: " + altezzaTab);
     for (var i = 0; i < game.playerManager.players.length; i++) {
-        var posy= posYTab+riservato+fattore* (i+1)-(game.playerManager.players[i].sprite.height/game.playerManager.players.length);
-        game.playerManager.setPlayerPosition(game.playerManager.players[i].Id, posXTab+50,posy);
-        game.playerManager.setNamePosition(game.playerManager.players[i].Id, posXTab+50 + game.playerManager.players[i].sprite.width, posYTab+riservato+fattore* (i+1)-(game.playerManager.players[i].sprite.height/game.playerManager.players.length));
+        var posy = posYTab + riservato + fattore * (i + 1) - (game.playerManager.players[i].sprite.height / game.playerManager.players.length);
+        game.playerManager.setPlayerPosition(game.playerManager.players[i].Id, posXTab + 50, posy);
+        game.playerManager.setNamePosition(game.playerManager.players[i].Id, posXTab + 50 + game.playerManager.players[i].sprite.width, posYTab + riservato + fattore * (i + 1) - (game.playerManager.players[i].sprite.height / game.playerManager.players.length));
         game.playerManager.showPlayer(game.playerManager.players[i].Id, true);
 
         //Mostriamo punti minigioco
-        miniPointsarrayText.push(game.gamePhaser.add.text(centroLinea+50, posy,"+"+game.playerManager.players[i].minigamePoints, game.textStyles.titleStyle));
+        miniPointsarrayText.push(game.gamePhaser.add.text(centroLinea + 50, posy, "+" + game.playerManager.players[i].minigamePoints, game.textStyles.titleStyle));
         miniPointsarrayText[i].fontSize = 25;
         miniPointsarrayText[i].anchor.setTo(0, 1);
-        pointsArrayText.push(game.gamePhaser.add.text(trequarti+50, posy, game.playerManager.players[i].points, game.textStyles.titleStyle));
+        pointsArrayText.push(game.gamePhaser.add.text(trequarti + 50, posy, game.playerManager.players[i].points, game.textStyles.titleStyle));
         pointsArrayText[i].fontSize = 25;
         pointsArrayText[i].anchor.setTo(0, 1);
     }
@@ -263,4 +276,9 @@ MinigameManager.prototype.showPointsTable=function(){
     timer2.start();
 
 
+}
+//Funzione che setta il numero di minigiochi da fare
+MinigameManager.prototype.setNumHostChoose = function (numHostChoose) {
+
+    MinigameManager.numMinHostChoose = numHostChoose;
 }

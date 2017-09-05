@@ -55,6 +55,7 @@ var lobbyState = {
     },
     handlePlayerPlaying: function (event) {
         console.log("Ricevuto Richiesta PLAYING. id:" + event.playerInfo.playerId);
+
         //Se non si è almeno in due non facciamo niente
         if (game.playerManager.players.length < 2) {
             console.log("Servono almeno due giocatori");
@@ -78,8 +79,19 @@ var lobbyState = {
             game.gameManager.updateLobbyState(
                 cast.receiver.games.LobbyState.CLOSED, null);
 
-            lobbyState.startMinigames();
-            console.log("Ho appena chiamato startMinigame, sono in playing");
+            //Gestiamo la scelta del numero di minigiochi
+            var message=event.requestExtraMessageData;
+            if(message.hasOwnProperty("numMiniHostChoose"))
+            {
+                var numHostChoose=message.numMiniHostChoose;
+                lobbyState.startMinigames(numHostChoose);
+                console.log("Ho appena chiamato startMinigame, sono in playing");
+            }
+            else
+            {
+                console.log("ERRORE. numero dei minigiochi host non presente");
+            }
+
         }
     },
 
@@ -124,12 +136,13 @@ var lobbyState = {
     updatePlayerCountTitle: function () {
         this.playerCountTitle.setText("Giocatori connessi: " + game.playerManager.players.length + "/4");
     },
-    startMinigames: function () {
+    startMinigames: function (numHostChoose) {
         console.log("Startminigames");
         //Settiamo il gioco come running
         game.gameManager.updateGameplayState(
             cast.receiver.games.GameplayState.LOADING, false);
 
+        game.minigameManager.setNumHostChoose(numHostChoose);
         game.minigameManager.loadSpecificMinigame("shakeMinigame");
         // game.minigameManager.loadRandomMinigame();
     },

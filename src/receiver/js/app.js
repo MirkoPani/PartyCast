@@ -281,7 +281,7 @@ function PartyCast(gameManager) {
     this.gamePhaser.state.add("micMinigame", micMinigame);
     this.gamePhaser.state.add("shakeMinigame", shakeMinigame);
     this.gamePhaser.state.add("gyroMinigame", gyroMinigame);
-
+    this.gamePhaser.state.add("endGame", endGame);
 
     this.minigameManager = new MinigameManager();
 
