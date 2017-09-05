@@ -1,5 +1,9 @@
 package com.example.mirko.custombuttonexample.models;
 
+import android.graphics.drawable.Drawable;
+
+import com.example.mirko.custombuttonexample.R;
+
 /**
  * Created by MirkoPortatile on 30/05/2017.
  */
@@ -28,5 +32,15 @@ public class Avatar {
         this.imgSrcId = imgSrc;
         this.description = description;
     }
-
+    public static int getAvatarDrowableFromInt(int a){
+        switch(a){
+            case 1:return R.drawable.avatar_1;
+            case 2:return R.drawable.avatar_2;
+            case 3:return R.drawable.avatar_3;
+            case 4:return R.drawable.avatar_4;
+            case 5:return R.drawable.avatar_5;
+            case 6:return R.drawable.avatar_6;
+            default:return R.drawable.avatar_1;
+        }
+    }
 }
