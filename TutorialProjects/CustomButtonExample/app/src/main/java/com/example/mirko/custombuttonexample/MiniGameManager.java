@@ -24,6 +24,8 @@ private static String TAG = "MINIGAMEMANAGER";
                 return new MicMinigame();
             case "shakeMinigame":
                 return new ShakeMinigame();
+            case "endGame":
+                return new EndGame();
             default:
                 Log.d(TAG,"Non è stato scelto nessun minigioco. errore!");
                 return null;

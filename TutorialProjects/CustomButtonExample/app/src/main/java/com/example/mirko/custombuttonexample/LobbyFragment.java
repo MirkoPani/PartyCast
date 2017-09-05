@@ -1,9 +1,12 @@
 package com.example.mirko.custombuttonexample;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -19,6 +22,7 @@ import com.example.mirko.custombuttonexample.event.HostChangedEvent;
 import com.example.mirko.custombuttonexample.messages.PlayerPlayingMessage;
 import com.example.mirko.custombuttonexample.messages.PlayerReadyMessage;
 import com.example.mirko.custombuttonexample.viewpages.DeactivableViewPager;
+import com.example.mirko.custombuttonexample.viewpages.MatchOptionFragment;
 import com.google.android.gms.cast.games.GameManagerClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
@@ -81,37 +85,6 @@ public class LobbyFragment extends Fragment implements Listener {
         viewPager.setEnabled(false);
     }
 
-    public void sendPlayingMessage(){
-        PlayerPlayingMessage ppm=new PlayerPlayingMessage();
-
-        final CastConnectionManager ccm=PartyCastApplication.getInstance().getCastConnectionManager();
-        if(ccm.isConnectedToReceiver())
-        {
-            PendingResult<GameManagerClient.GameManagerResult> result = gmc.sendPlayerPlayingRequest(ppm.toJSON());
-
-            result.setResultCallback(
-                    new ResultCallback<GameManagerClient.GameManagerResult>() {
-                        @Override
-                        public void onResult(final GameManagerClient.GameManagerResult
-                                                     gameManagerResult) {
-                            if (gameManagerResult.getStatus().isSuccess()) {
-                                Log.d(TAG, "onResult: Playing!");
-                            } else {
-                                ccm.disconnectFromReceiver(false);
-                                Log.d(TAG, "onResult: Errore sendPlayerPlaying");
-                            }
-
-                        }
-                    });
-
-
-        }
-
-
-
-        Log.d(TAG, "sendPlayingMessage: ");
-    }
-
     //Mostra l'input dialog per il testo
     protected void showInputDialog() {
 
@@ -155,7 +128,11 @@ public class LobbyFragment extends Fragment implements Listener {
                 btnReady.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        sendPlayingMessage();
+                        FragmentManager fm = getActivity().getSupportFragmentManager();
+                        FragmentTransaction ft = fm.beginTransaction();
+                        ft.replace(R.id.mainViewGroup,new MatchOptionFragment());
+                        ft.commit();
+                        Log.d(TAG, "onClick: si deve scegliere il numero di match");
                     }
                 });
             }
