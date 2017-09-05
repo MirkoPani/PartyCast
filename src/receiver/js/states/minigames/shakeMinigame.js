@@ -123,6 +123,11 @@ var shakeMinigame = {
         console.log("Tolgo punti");
         var i = game.playerManager.getPlayerArrayPosFromCastId(id);
         game.playerManager.players[i].minigamePoints -= 10;
+        //Controllo per non diventare negativi
+        if(game.playerManager.players[i].minigamePoints <0)
+        {
+            game.playerManager.players[i].minigamePoints=0;
+        }
         game.playerManager.players[i].pointsText = game.gamePhaser.add.text((window.innerWidth / 5) * (i + 1), window.innerHeight - (window.innerHeight / 25) - 100, "-10", game.textStyles.errorStyle);
         game.playerManager.players[i].pointsText.fontSize = 40;
         game.playerManager.players[i].pointsText.alpha = 1;
@@ -152,7 +157,9 @@ var shakeMinigame = {
             shakeMinigame.minigameInstructionText.setText("GO!");
             game.gamePhaser.add.tween(shakeMinigame.minigameInstructionText).to({alpha: 0}, 250, "Linear", true);
 
-            game.gameManager.sendGameMessageToAllConnectedPlayers({startGame: "1"});
+            //Notifichiamo che inizia il gioco
+            game.gameManager.updateGameplayState(cast.receiver.games.GameplayState.RUNNING, false);
+
             shakeMinigame.myLoop= game.gamePhaser.time.events.loop(Phaser.Timer.SECOND * 2, shakeMinigame.newShake, this);
 
             //Facciamo partire timer
@@ -203,6 +210,9 @@ var shakeMinigame = {
     endGame:function(){
         //Finito il gioco
         game.gamePhaser.time.events.remove(shakeMinigame.myLoop);
+
+        //Nascondiamo shaketext per sicurezza
+        shakeMinigame.shakeText.alpha=0;
 
         game.gameManager.removeEventListener(cast.receiver.games.EventType.GAME_MESSAGE_RECEIVED, shakeMinigame.checkShake);
 

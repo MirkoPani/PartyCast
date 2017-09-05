@@ -48,6 +48,8 @@ public class TouchMinigame extends Fragment implements DrawView.DrawViewListener
     private static final String MESSAGE_GUESS = "guess";
     private static final String MESSAGE_TURNINC = "turninc";
 
+
+
     private View artistUI;
     private View indovinoUI;
     private DrawView drawView;
@@ -143,6 +145,9 @@ public class TouchMinigame extends Fragment implements DrawView.DrawViewListener
         //Inizializzazione map
         map = new HashMap<String, Integer>();
 
+        disableIndoviniBtn();
+        drawView.setTouchEnabled(false);
+        drawView.setEnabled(false);
         return view;
     }
 
@@ -163,7 +168,7 @@ public class TouchMinigame extends Fragment implements DrawView.DrawViewListener
             indParolaCorretta = (new Random()).nextInt(turnoWords.size());
 
             // Mandiamo agli altri le parole che abbiamo pescato tramite il messaggio del turno
-            sendTurnMessage(0);
+            sendTurnMessage();
         }
         beginTurn();
     }
@@ -200,9 +205,10 @@ public class TouchMinigame extends Fragment implements DrawView.DrawViewListener
 
     //Mostra la UI per chi deve indovinare
     private void setIndoviniUI() {
+        Log.d(TAG, "setIndoviniUI: ");
         artistUI.setVisibility(View.GONE);
         btnClear.setVisibility(View.GONE);
-        drawView.setTouchEnabled(false);
+        //drawView.setTouchEnabled(false);
         drawView.setVisibility(View.GONE);
         indovinoUI.setVisibility(View.VISIBLE);
         wordToDraw.setVisibility(View.GONE);
@@ -226,14 +232,16 @@ public class TouchMinigame extends Fragment implements DrawView.DrawViewListener
         btnChoose5.setVisibility(View.VISIBLE);
         btnChoose6.setVisibility(View.VISIBLE);
         chooseInstruction.setVisibility(View.VISIBLE);
-        enableIndoviniBtn();
+
+       // enableIndoviniBtn();
 
     }
 
     //Mostra la UI per l'artista
     private void setArtistUI() {
+        Log.d(TAG, "setArtistUI: ");
         artistUI.setVisibility(View.VISIBLE);
-        drawView.setTouchEnabled(true);
+        //drawView.setTouchEnabled(true);
         drawView.setVisibility(View.VISIBLE);
         drawInstruction.setVisibility(View.VISIBLE);
         btnClear.setVisibility(View.VISIBLE);
@@ -256,6 +264,7 @@ public class TouchMinigame extends Fragment implements DrawView.DrawViewListener
 
     //Manda un messaggio per avvisare che siamo l'artista
     private void sendArtistMessage() {
+        Log.d(TAG, "sendArtistMessage: ");
         JSONObject jsonMessage = new JSONObject();
         GameManagerClient gameManagerClient = PartyCastApplication.getInstance().getCastConnectionManager().getGameManagerClient();
         if (PartyCastApplication.getInstance().getCastConnectionManager().isConnectedToReceiver()) {
@@ -271,7 +280,7 @@ public class TouchMinigame extends Fragment implements DrawView.DrawViewListener
     }
 
     //Manda un messaggio per iniziare il turno: contiene il turno, le parole e l'indice di quella esatta
-    private void sendTurnMessage(int turnIndex) {
+    private void sendTurnMessage() {
         JSONObject jsonMessage = new JSONObject();
         try {
             jsonMessage.put(MESSAGE_TURN, matchNumber);
@@ -434,7 +443,23 @@ public class TouchMinigame extends Fragment implements DrawView.DrawViewListener
     private class TouchMinigameListener implements GameManagerClient.Listener {
 
         @Override
-        public void onStateChanged(GameManagerState gameManagerState, GameManagerState gameManagerState1) {
+        public void onStateChanged(GameManagerState current, GameManagerState old) {
+
+            //Se stiamo mostrando info a schermo blocchiamo gameplay
+            if(current.getGameplayState()==GameManagerClient.GAMEPLAY_STATE_SHOWING_INFO_SCREEN)
+            {
+                //Unregister shake
+                Log.d(TAG, "onStateChanged: info screen");
+              disableIndoviniBtn();
+                drawView.setTouchEnabled(false);
+            }
+            if(current.getGameplayState()==GameManagerClient.GAMEPLAY_STATE_RUNNING)
+            {
+
+                    drawView.setTouchEnabled(true);
+                    drawView.setEnabled(true);
+                    enableIndoviniBtn();
+            }
 
         }
 
@@ -487,7 +512,7 @@ public class TouchMinigame extends Fragment implements DrawView.DrawViewListener
         indParolaCorretta = (new Random()).nextInt(turnoWords.size());
 
         // Send new turn data to others
-        sendTurnMessage(matchNumber);
+        sendTurnMessage();
 
         beginTurn();
         updateViewVisibility();

@@ -34,7 +34,7 @@ public class ShakeMinigame extends Fragment {
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private ShakeDetector mShakeDetector;
-
+private boolean gameHasStarted;
     MediaPlayer mp;
     Vibrator v;
 
@@ -51,6 +51,8 @@ public class ShakeMinigame extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.shake_mini_game, container, false);
 
+
+        gameHasStarted=false;
 
         // ShakeDetector initialization
         mSensorManager = (SensorManager) PartyCastApplication.getInstance().getSystemService(Context.SENSOR_SERVICE);
@@ -103,11 +105,20 @@ public class ShakeMinigame extends Fragment {
         if (PartyCastApplication.getInstance().getCastConnectionManager().isConnectedToReceiver()) {
             PartyCastApplication.getInstance().addListenerToEventManager(mListener);
         }
-        mSensorManager.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
+
+        registerShakeListener();
+        //mSensorManager.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
 
         mp = MediaPlayer.create(PartyCastApplication.getInstance(), R.raw.coin);
         super.onResume();
 
+    }
+
+    public void registerShakeListener(){
+        if(gameHasStarted)
+        {
+            mSensorManager.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
+        }
     }
 
     @Override
@@ -135,16 +146,31 @@ public class ShakeMinigame extends Fragment {
     private class ShakeMinigameListener implements GameManagerClient.Listener {
 
         @Override
-        public void onStateChanged(GameManagerState gameManagerState, GameManagerState gameManagerState1) {
+        public void onStateChanged(GameManagerState current, GameManagerState old) {
             Log.d(TAG, "onStateChanged: ");
+
+            //Se stiamo mostrando info a schermo blocchiamo gameplay
+            if(current.getGameplayState()==GameManagerClient.GAMEPLAY_STATE_SHOWING_INFO_SCREEN)
+            {
+                //Unregister shake
+                Log.d(TAG, "onStateChanged: info screen");
+                mSensorManager.unregisterListener(mShakeDetector);
+            }
+            if(current.getGameplayState()==GameManagerClient.GAMEPLAY_STATE_RUNNING)
+            {
+                Log.d(TAG, "onStateChanged: minigame running");
+                mSensorManager.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
+                gameHasStarted=true;
+            }
         }
 
         @Override
         public void onGameMessageReceived(String playerId, JSONObject message) {
             Log.d(TAG, "onGameMessageReceived: " + message);
             if (message.has("startGame")) {
-                mSensorManager.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
-            }
+                /*mSensorManager.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
+                gameHasStarted=true;
+            */}
         }
     }
 

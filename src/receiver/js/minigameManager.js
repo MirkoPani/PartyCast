@@ -150,6 +150,9 @@ MinigameManager.prototype.resetGame = function () {
         game.playerManager.setHost("");
         game.gameManager.updateGameData({minigame: "none"}, true);
 
+        //Notifichiamo che mostriamo istruzioni
+        game.gameManager.updateGameplayState(
+            cast.receiver.games.GameplayState.LOADING, false);
 
         game.gamePhaser.state.start("titleScreen");
 
@@ -160,6 +163,10 @@ MinigameManager.prototype.resetGame = function () {
 
 }
 MinigameManager.prototype.showPointsTable=function(){
+
+    //Notifichiamo che mostriamo istruzioni
+    game.gameManager.updateGameplayState(
+        cast.receiver.games.GameplayState.SHOWING_INFO_SCREEN, false);
 
     var altezzaTab=window.innerHeight-(window.innerHeight*.4);
     var larghezzaTab= window.innerWidth-(window.innerWidth*.4);

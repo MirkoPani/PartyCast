@@ -128,7 +128,7 @@ var lobbyState = {
         console.log("Startminigames");
         //Settiamo il gioco come running
         game.gameManager.updateGameplayState(
-            cast.receiver.games.GameplayState.RUNNING, null);
+            cast.receiver.games.GameplayState.LOADING, false);
 
         game.minigameManager.loadSpecificMinigame("shakeMinigame");
         // game.minigameManager.loadRandomMinigame();

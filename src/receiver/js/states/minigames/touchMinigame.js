@@ -8,6 +8,7 @@ var touchMinigame = {
     clocktext: "",
     minigameInstructionText: "",
     turnNumber: 0,
+    artistTitle:{},
     preload: function () {
 
         //Player uscito involontariamente oppure ha chiuso l'app
@@ -45,12 +46,18 @@ var touchMinigame = {
             touchMinigame.minigameInstructionText.setText("GO!");
             game.gamePhaser.add.tween(touchMinigame.minigameInstructionText).to({alpha: 0}, 250, "Linear", true);
 
+
+
             //griglia visibile
             var wrapper = document.getElementById("wrapper");
             wrapper.style.visibility = "visible";
 
             //Facciamo partire timer
             this.initClock();
+
+            //Notifichiamo che inizia il gioco
+            game.gameManager.updateGameplayState(cast.receiver.games.GameplayState.RUNNING, false);
+
 
         }, this);
 
@@ -64,9 +71,9 @@ var touchMinigame = {
         this.showInstructions("Artisti e indovini");
 
         //Scritta Sopra
-        var artistTitle = game.gamePhaser.add.text(game.gamePhaser.world.centerX, 80, "In attesa", game.textStyles.titleStyle);
-        artistTitle.anchor.setTo(0.5, 0.5);
-        artistTitle.fontSize = 60;
+        touchMinigame.artistTitle = game.gamePhaser.add.text(game.gamePhaser.world.centerX, 80, "In attesa", game.textStyles.titleStyle);
+        touchMinigame.artistTitle.anchor.setTo(0.5, 0.5);
+        touchMinigame.artistTitle.fontSize = 60;
 
         // timer object, note timer won't start running yet
 
@@ -80,74 +87,76 @@ var touchMinigame = {
 
         //Eventi
         game.gameManager.addEventListener(
-            cast.receiver.games.EventType.GAME_MESSAGE_RECEIVED, function (event) {
-                console.log("Messaggio ricevuto");
-                var message = event.requestExtraMessageData;
-                //    console.log("message=" + message);
-
-
-                //Cambiato artista, ricevuto quello nuovo
-                if (message.artist) {
-                    console.log("Ricevuto message artista");
-                    console.log(message.artist + " sta disegnando!");
-                    artistTitle.setText(game.playerManager.getPlayerName(message.artist) + " sta disegnando..");
-                    artistId = event.playerInfo.playerId;
-                }
-
-                //Ci è stato mandato un guess
-                if (message.hasOwnProperty('guess')) {
-                    console.log("Messaggio guess");
-                    touchMinigame.giocatoriCheHannoGuessato++;
-                    //il player ha indovinato
-                    if (message.guess == touchMinigame.indCorretto) {
-                        //Aggiungiamo un punto se ha fatto giusto
-                        console.log("Il giocatore con id: " + event.playerInfo.playerId + " ha fatto giusto.");
-                        game.playerManager.addMinigamePointsTo(event.playerInfo.playerId, 50);
-                    }
-                    //Il player ha sbagliato
-                    else {
-                        console.log("Il giocatore con id: " + event.playerInfo.playerId + " ha ciccato.")
-                    }
-
-                    touchMinigame.checkAllGuessed();
-
-                }
-
-                //Ci è stata mandata la collezione di parole, inviamola a tutti
-                if (message.words) {
-                    console.log("Ricevuto message words");
-                    game.gameManager.sendGameMessageToAllConnectedPlayers(message);
-
-                    //salviamo l'indice della parola giusta
-                    console.log("Indice giusto: " + message.index);
-                    touchMinigame.indCorretto = message.index;
-
-                    //salviamo il numero di turno
-                    touchMinigame.turnNumber = message.turn;
-                    console.log("Numero turno: " + touchMinigame.turnNumber);
-                }
-
-                //Caso in cui abbiamo colorato qualcosa
-                if (message.grid) {
-                    console.log("Ricevuto message grid");
-                    var element = document.getElementById(message.grid);
-                    if (element) {
-                        element.style.backgroundColor = message.color;
-                    }
-                }
-
-                //Caso per pulizia
-                if (message.clear) {
-                    console.log("Ricevuto message clear");
-                    var tds = document.getElementsByTagName('td');
-                    for (var i = 0, td = tds.length; i < td; i++) {
-                        tds[i].style.backgroundColor = 'black';
-                    }
-                }
-
-            });
+            cast.receiver.games.EventType.GAME_MESSAGE_RECEIVED,touchMinigame.handleMessageReceived);
 
     },
+    handleMessageReceived:function (event) {
+
+        console.log("Messaggio ricevuto");
+        var message = event.requestExtraMessageData;
+        //    console.log("message=" + message);
+
+
+        //Cambiato artista, ricevuto quello nuovo
+        if (message.hasOwnProperty('artist')) {
+            console.log("Ricevuto message artista");
+            console.log(message.artist + " sta disegnando!");
+            touchMinigame.artistTitle.setText(game.playerManager.getPlayerName(message.artist) + " sta disegnando..");
+            artistId = event.playerInfo.playerId;
+        }
+
+        //Ci è stato mandato un guess
+        if (message.hasOwnProperty('guess')) {
+            console.log("Messaggio guess");
+            touchMinigame.giocatoriCheHannoGuessato++;
+            //il player ha indovinato
+            if (message.guess == touchMinigame.indCorretto) {
+                //Aggiungiamo un punto se ha fatto giusto
+                console.log("Il giocatore con id: " + event.playerInfo.playerId + " ha fatto giusto.");
+                game.playerManager.addMinigamePointsTo(event.playerInfo.playerId, 50);
+            }
+            //Il player ha sbagliato
+            else {
+                console.log("Il giocatore con id: " + event.playerInfo.playerId + " ha ciccato.")
+            }
+
+            touchMinigame.checkAllGuessed();
+
+        }
+
+        //Ci è stata mandata la collezione di parole, inviamola a tutti
+        if (message.words) {
+            console.log("Ricevuto message words");
+            game.gameManager.sendGameMessageToAllConnectedPlayers(message);
+
+            //salviamo l'indice della parola giusta
+            console.log("Indice giusto: " + message.index);
+            touchMinigame.indCorretto = message.index;
+
+            //salviamo il numero di turno
+            touchMinigame.turnNumber = message.turn;
+            console.log("Numero turno: " + touchMinigame.turnNumber);
+        }
+
+        //Caso in cui abbiamo colorato qualcosa
+        if (message.grid) {
+         //   console.log("Ricevuto message grid");
+            var element = document.getElementById(message.grid);
+            if (element) {
+                element.style.backgroundColor = message.color;
+            }
+        }
+
+        //Caso per pulizia
+        if (message.clear) {
+        //    console.log("Ricevuto message clear");
+            var tds = document.getElementsByTagName('td');
+            for (var i = 0, td = tds.length; i < td; i++) {
+                tds[i].style.backgroundColor = 'black';
+            }
+        }
+
+},
     shutdown: function () {
         console.log("shutdown");
 
@@ -159,6 +168,8 @@ var touchMinigame = {
 
         game.gameManager.removeEventListener(cast.receiver.games.EventType.PLAYER_DROPPED, game.minigameManager.handlePlayerDisconnected);
         game.gameManager.removeEventListener(cast.receiver.games.EventType.PLAYER_QUIT, game.minigameManager.handlePlayerDisconnected);
+        game.gameManager.removeEventListener(cast.receiver.games.EventType.GAME_MESSAGE_RECEIVED,touchMinigame.handleMessageReceived);
+
 
         //Griglia
         var wrapper = document.getElementById("wrapper");
@@ -177,6 +188,10 @@ var touchMinigame = {
     changeTurn: function () {
         console.log("Changeturn");
 
+        //Stoppiamo il gioco
+        game.gameManager.updateGameplayState(cast.receiver.games.GameplayState.SHOWING_INFO_SCREEN, false);
+
+
         //resettiamo il num di guess
         touchMinigame.giocatoriCheHannoGuessato = 0;
 
@@ -187,6 +202,7 @@ var touchMinigame = {
         //Nascondiamo la griglia per il touchminigame
         var wrapper = document.getElementById("wrapper");
         wrapper.style.visibility = "hidden";
+
         //Puliamo griglia
         var tds = document.getElementsByTagName('td');
         for (var i = 0, td = tds.length; i < td; i++) {
@@ -232,6 +248,10 @@ var touchMinigame = {
                 //Mandiamo all'artista
                 var message = {turninc: 'increment'};
                 game.gameManager.sendGameMessageToAllConnectedPlayers(message);
+
+                //Riprende il gioco
+                game.gameManager.updateGameplayState(cast.receiver.games.GameplayState.RUNNING, false);
+
 
                 //Riparte il timer
                 this.initClock();
