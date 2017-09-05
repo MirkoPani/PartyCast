@@ -7,4 +7,7 @@
         Occhiali,Pantalone,Maglia,Mutande,Calzino,Televisione,Gomma,Matita,Sole,Luna,Gelato,Pizza,Panino,Kraken,
         Gondola,Venezia,Roma,Milano,Pesce,Delfino,Teatro
     </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
