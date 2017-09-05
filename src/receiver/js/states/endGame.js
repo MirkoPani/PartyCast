@@ -4,7 +4,7 @@ var endGame = {
     winnerText: {},
     nameofWinnerText: {},
     spriteOfWinner: {},
-    playersSorted:[],
+    playersSorted: [],
     preload: function () {
 
     },
@@ -95,20 +95,29 @@ var endGame = {
 
         endGame.sendPointsMessage();
 
+
+        //Resettiamo il gioco
+        var timer = game.gamePhaser.time.create(false);
+        timer.add(5000, function () {
+            game.minigameManager.resetGame();
+        }, this);
+
+        timer.start();
     },
     shutdown: function () {
 
     },
-    sendPointsMessage:function () {
-        var message={classifica:[
-            
-        ]};
+    sendPointsMessage: function () {
+        var message = {
+            classifica: []
+        };
 
-        for(var i=0;i<endGame.playersSorted.length;i++)
-        {
-            message.classifica.push({name:endGame.playersSorted[i].Name,
-                points:endGame.playersSorted[i].points,
-                avatar:endGame.playersSorted[i].Avatar});
+        for (var i = 0; i < endGame.playersSorted.length; i++) {
+            message.classifica.push({
+                name: endGame.playersSorted[i].Name,
+                points: endGame.playersSorted[i].points,
+                avatar: endGame.playersSorted[i].Avatar
+            });
         }
         game.gameManager.sendGameMessageToAllConnectedPlayers(message);
         console.log("Inviato messaggio classifica.");

@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44508416-c774-4889-970e-f11d8f194249" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/states/endGame.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home.html" afterPath="$PROJECT_DIR$/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/minigameManager.js" afterPath="$PROJECT_DIR$/js/minigameManager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/states/lobby.js" afterPath="$PROJECT_DIR$/js/states/lobby.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/states/endGame.js" afterPath="$PROJECT_DIR$/js/states/endGame.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,7 +22,7 @@
       <file leaf-file-name="titleScreen.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/states/titleScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
+            <state relative-caret-position="187">
               <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
               <folding />
             </state>
@@ -45,7 +42,7 @@
       <file leaf-file-name="touchMinigame.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/states/minigames/touchMinigame.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
+            <state relative-caret-position="1615">
               <caret line="95" column="51" lean-forward="false" selection-start-line="95" selection-start-column="22" selection-end-line="95" selection-end-column="51" />
               <folding />
             </state>
@@ -56,17 +53,17 @@
         <entry file="file://$PROJECT_DIR$/home.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
-              <caret line="12" column="52" lean-forward="true" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
+              <caret line="12" column="52" lean-forward="false" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="endGame.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="endGame.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/states/endGame.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="103" column="12" lean-forward="false" selection-start-line="103" selection-start-column="12" selection-end-line="103" selection-end-column="12" />
+            <state relative-caret-position="432">
+              <caret line="121" column="71" lean-forward="false" selection-start-line="121" selection-start-column="8" selection-end-line="121" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -85,8 +82,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2023">
-              <caret line="280" column="58" lean-forward="true" selection-start-line="280" selection-start-column="58" selection-end-line="280" selection-end-column="58" />
+            <state relative-caret-position="2227">
+              <caret line="280" column="58" lean-forward="false" selection-start-line="280" selection-start-column="58" selection-end-line="280" selection-end-column="58" />
               <folding>
                 <element signature="e#0#37#0" expanded="false" />
                 <element signature="n#!!block;n#PlayerManager#0" expanded="false" />
@@ -148,15 +145,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="minigameManager.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="minigameManager.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/minigameManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="231" column="36" lean-forward="false" selection-start-line="231" selection-start-column="3" selection-end-line="231" selection-end-column="36" />
+            <state relative-caret-position="247">
+              <caret line="25" column="44" lean-forward="false" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
               <folding>
-                <element signature="e#2718#3167#0" expanded="false" />
-                <element signature="e#4800#4804#0" expanded="false" />
-                <element signature="e#4859#4884#0" expanded="false" />
+                <element signature="e#2830#3279#0" expanded="false" />
+                <element signature="e#4912#4916#0" expanded="false" />
+                <element signature="e#4971#4996#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -165,7 +162,7 @@
       <file leaf-file-name="shakeMinigame.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/states/minigames/shakeMinigame.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
+            <state relative-caret-position="1292">
               <caret line="76" column="78" lean-forward="true" selection-start-line="76" selection-start-column="17" selection-end-line="76" selection-end-column="78" />
               <folding />
             </state>
@@ -175,7 +172,7 @@
       <file leaf-file-name="lobby.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/states/lobby.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-649">
+            <state relative-caret-position="1428">
               <caret line="84" column="13" lean-forward="true" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
               <folding />
             </state>
@@ -193,7 +190,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>message</find>
       <find>endgame</find>
       <find>addpoints</find>
       <find>sum</find>
@@ -223,6 +219,7 @@
       <find>random</find>
       <find>players</find>
       <find>shake</find>
+      <find>handle</find>
     </findStrings>
     <replaceStrings>
       <replace>touchMinigame</replace>
@@ -243,10 +240,10 @@
         <option value="$PROJECT_DIR$/js/states/minigames/shakeMinigame.js" />
         <option value="$PROJECT_DIR$/js/states/minigames/touchMinigame.js" />
         <option value="$PROJECT_DIR$/js/app.js" />
-        <option value="$PROJECT_DIR$/js/minigameManager.js" />
         <option value="$PROJECT_DIR$/home.html" />
         <option value="$PROJECT_DIR$/js/states/lobby.js" />
         <option value="$PROJECT_DIR$/js/states/endGame.js" />
+        <option value="$PROJECT_DIR$/js/minigameManager.js" />
       </list>
     </option>
   </component>
@@ -291,6 +288,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -367,6 +365,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="receiver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="receiver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="fonts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -388,7 +400,6 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -539,16 +550,16 @@
       <workItem from="1504422900081" duration="20081000" />
       <workItem from="1504508609947" duration="4866000" />
       <workItem from="1504535922047" duration="4451000" />
-      <workItem from="1504596381953" duration="11385000" />
+      <workItem from="1504596381953" duration="11922000" />
+      <workItem from="1504620390008" duration="1940000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130659000" />
+    <option name="totallyTimeSpent" value="133136000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1370" height="754" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963072" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1049,7 +1060,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="14" lean-forward="false" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1063,7 +1073,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/states/titleScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
+        <state relative-caret-position="187">
           <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
           <folding />
         </state>
@@ -1071,7 +1081,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/states/minigames/touchMinigame.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
+        <state relative-caret-position="1615">
           <caret line="95" column="51" lean-forward="false" selection-start-line="95" selection-start-column="22" selection-end-line="95" selection-end-column="51" />
           <folding />
         </state>
@@ -1080,7 +1090,7 @@
     <entry file="file://$PROJECT_DIR$/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="12" column="52" lean-forward="true" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
+          <caret line="12" column="52" lean-forward="false" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
           <folding />
         </state>
       </provider>
@@ -1095,27 +1105,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/states/lobby.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-649">
+        <state relative-caret-position="1428">
           <caret line="84" column="13" lean-forward="true" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/minigameManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="231" column="36" lean-forward="false" selection-start-line="231" selection-start-column="3" selection-end-line="231" selection-end-column="36" />
-          <folding>
-            <element signature="e#2718#3167#0" expanded="false" />
-            <element signature="e#4800#4804#0" expanded="false" />
-            <element signature="e#4859#4884#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/states/minigames/shakeMinigame.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
+        <state relative-caret-position="1292">
           <caret line="76" column="78" lean-forward="true" selection-start-line="76" selection-start-column="17" selection-end-line="76" selection-end-column="78" />
           <folding />
         </state>
@@ -1123,8 +1121,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2023">
-          <caret line="280" column="58" lean-forward="true" selection-start-line="280" selection-start-column="58" selection-end-line="280" selection-end-column="58" />
+        <state relative-caret-position="2227">
+          <caret line="280" column="58" lean-forward="false" selection-start-line="280" selection-start-column="58" selection-end-line="280" selection-end-column="58" />
           <folding>
             <element signature="e#0#37#0" expanded="false" />
             <element signature="n#!!block;n#PlayerManager#0" expanded="false" />
@@ -1187,9 +1185,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/states/endGame.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="103" column="12" lean-forward="false" selection-start-line="103" selection-start-column="12" selection-end-line="103" selection-end-column="12" />
+        <state relative-caret-position="432">
+          <caret line="121" column="71" lean-forward="false" selection-start-line="121" selection-start-column="8" selection-end-line="121" selection-end-column="71" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/minigameManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="25" column="44" lean-forward="false" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+          <folding>
+            <element signature="e#2830#3279#0" expanded="false" />
+            <element signature="e#4912#4916#0" expanded="false" />
+            <element signature="e#4971#4996#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

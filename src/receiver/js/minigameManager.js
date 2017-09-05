@@ -22,6 +22,8 @@ MinigameManager.prototype.loadSpecificMinigame = function (minigameType) {
     //Se il numero di minigiochi e' uguale al numero che aveva scelto host è finito il gioco
     if (MinigameManager.numMinHostChoose == this.minigameCount) {
         console.log("GIOCO FINITO");
+        game.gameManager.updateGameData({minigame: minigameType});
+        this.currentMinigame = minigameType;
         game.gamePhaser.state.start("endGame");
     }
     //Normale flow
