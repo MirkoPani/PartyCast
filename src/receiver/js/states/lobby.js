@@ -143,7 +143,7 @@ var lobbyState = {
             cast.receiver.games.GameplayState.LOADING, false);
 
         game.minigameManager.setNumHostChoose(numHostChoose);
-        game.minigameManager.loadSpecificMinigame("shakeMinigame");
+        game.minigameManager.loadRandomMinigame();
         // game.minigameManager.loadRandomMinigame();
     },
     shutdown: function () {

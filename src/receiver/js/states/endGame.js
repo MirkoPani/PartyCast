@@ -5,8 +5,11 @@ var endGame = {
     nameofWinnerText: {},
     spriteOfWinner: {},
     playersSorted: [],
+    miniGameChangedCount: 0,
     preload: function () {
-
+        game.gameManager.addEventListener(cast.receiver.games.EventType.GAME_MESSAGE_RECEIVED,
+            endGame.handleMessage);
+        endGame.miniGameChangedCount=0;
     },
     create: function () {
         game.gamePhaser.stage.backgroundColor = "#ffcc5c";
@@ -19,6 +22,7 @@ var endGame = {
         endGame.playersSorted.sort(function (a, b) {
             return b.points - a.points;
         });
+
 
         //Abbiamo solo un vincitore, lo mostriamo in grande
         if (endGame.playersSorted[0].points != endGame.playersSorted[1].points) {
@@ -33,7 +37,7 @@ var endGame = {
         else {
             var winnerString = "Vincitori a pari merito:\n";
 
-            for (var i = 0; i < playersSorted.length; i++) {
+            for (var i = 0; i < endGame.playersSorted.length; i++) {
                 if (endGame.playersSorted[0].points == endGame.playersSorted[i].points) {
                     winnerString += endGame.playersSorted[i].Name + "\n";
                 }
@@ -93,18 +97,12 @@ var endGame = {
             pointsArrayText[i].anchor.setTo(0, 1);
         }
 
-        endGame.sendPointsMessage();
+        //endGame.sendPointsMessage();
 
 
-        //Resettiamo il gioco
-        var timer = game.gamePhaser.time.create(false);
-        timer.add(5000, function () {
-            game.minigameManager.resetGame();
-        }, this);
-
-        timer.start();
     },
     shutdown: function () {
+        game.gameManager.removeEventListener(cast.receiver.games.EventType.GAME_MESSAGE_RECEIVED, endGame.handleMessage);
 
     },
     sendPointsMessage: function () {
@@ -122,5 +120,29 @@ var endGame = {
         game.gameManager.sendGameMessageToAllConnectedPlayers(message);
         console.log("Inviato messaggio classifica.");
         console.log(message);
+
+
+        //Resettiamo il gioco
+        var timer = game.gamePhaser.time.create(false);
+        timer.add(8000, function () {
+            game.minigameManager.resetGame();
+        }, this);
+
+        timer.start();
+
+    },
+    handleMessage: function (event) {
+
+
+        var message = event.requestExtraMessageData;
+
+        if (message.hasOwnProperty('minigamechanged')) {
+            endGame.miniGameChangedCount++;
+            if (endGame.miniGameChangedCount === game.playerManager.players.length) {
+                console.log("Ricevute tutte le conferme.Invio sendpoints");
+                endGame.sendPointsMessage();
+            }
+        }
+
     }
 };

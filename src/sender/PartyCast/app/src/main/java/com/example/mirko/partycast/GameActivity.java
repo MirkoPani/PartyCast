@@ -73,6 +73,22 @@ public class GameActivity extends GeneralActivity {
         super.onDestroy();
     }
 
+    //Manda un messaggio al receiver per confermare che il telefono ha cambiato minigioco
+    public void sendMiniGameChangedConfermation(){
+        JSONObject jsonMessage = new JSONObject();
+
+        if (PartyCastApplication.getInstance().getCastConnectionManager().isConnectedToReceiver()) {
+            jsonMessage = new JSONObject();
+            try {
+                jsonMessage.put("minigamechanged", gmc.getLastUsedPlayerId());
+            } catch (JSONException e) {
+                Log.e(TAG, "Error creating JSON message", e);
+                return;
+            }
+            PartyCastApplication.getInstance().getCastConnectionManager().getGameManagerClient().sendGameMessage(jsonMessage);
+        }
+    }
+
     private class GameListener implements GameManagerClient.Listener {
 
         @Override

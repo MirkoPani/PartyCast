@@ -25,14 +25,17 @@ var titleScreenState = {
 
       //  game.music.onDecoded.add(titleScreenState.loadComplete, this);
         game.gamePhaser.state.start("lobby");
+      //  game.gamePhaser.state.start("gyroMinigame");
     },
 
     start: function () {
+        //lobby
         game.gamePhaser.state.start("lobby");
     },
 
     loadComplete: function () {
      //   game.music.play();
+        //lobby
         game.gamePhaser.state.start("lobby");
     }
 }

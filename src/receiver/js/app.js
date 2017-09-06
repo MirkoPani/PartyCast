@@ -173,6 +173,7 @@ PlayerManager.prototype.showShadowUnderPlayer = function (id, logicValue) {
 
 PlayerManager.prototype.resetPlayers = function () {
     this.players = [];
+
 };
 
 PlayerManager.prototype.addPointsTo = function (id, points) {

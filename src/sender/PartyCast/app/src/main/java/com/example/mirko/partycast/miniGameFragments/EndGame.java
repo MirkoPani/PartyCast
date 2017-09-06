@@ -7,10 +7,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.ListView;
 
+import com.example.mirko.partycast.GameActivity;
 import com.example.mirko.partycast.PartyCastApplication;
 import com.example.mirko.partycast.R;
+import com.example.mirko.partycast.adapters.classificaAdapter;
+import com.example.mirko.partycast.models.Avatar;
+import com.example.mirko.partycast.models.classificaItem;
 import com.google.android.gms.cast.games.GameManagerClient;
 import com.google.android.gms.cast.games.GameManagerState;
 
@@ -21,7 +25,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,14 +35,14 @@ import java.util.Map.Entry;
  * A simple {@link Fragment} subclass.
  */
 public class EndGame extends Fragment {
+
     private static final String TAG = "EndGame";
+
     private GameManagerClient.Listener mListener = new EndgameListener();
-    private ArrayList<String> listaPlayer;
-    private Map classifica,avatar;
-    private LinearLayout ll;
-    private ArrayList<View> lista;
+    private ArrayList<classificaItem> listaPlayer;
 
-
+    private ListView listView;
+private classificaAdapter adapter;
     public EndGame() {
         // Required empty public constructor
     }
@@ -52,16 +55,19 @@ public class EndGame extends Fragment {
         View view = inflater.inflate(R.layout.fragment_end_game, container, false);
 
         //hashmap per la classifica
-        listaPlayer = new ArrayList<String>();
-        classifica = new HashMap<String,Integer>();
-        //la ordino in maniera decrescente
-        //classifica = sortByComparator(classifica,false);
-        //hashmap per l'associazione player-avatar
-        avatar = new HashMap<String,Integer>();
-        //layout in cui andrà la classifica
-        ll = (LinearLayout) view.findViewById(R.id.ll);
-        lista = new ArrayList<View>();
-        
+        listaPlayer = new ArrayList<classificaItem>();
+
+        //listaPlayer.add(new classificaItem("Ciao",5+"",R.drawable.avatar_1));
+
+        adapter = new classificaAdapter(getActivity(), listaPlayer, R.color.endGameItem);
+
+        listView = (ListView) view.findViewById(R.id.classificaListView);
+
+        listView.setAdapter(adapter);
+
+        //Notifichiamo dell'avvenuto cambio
+        ((GameActivity)getActivity()).sendMiniGameChangedConfermation();
+
         return view;
     }
 
@@ -94,38 +100,32 @@ public class EndGame extends Fragment {
 
             Log.d(TAG, "onGameMessageReceived: ");
             if(jsonObject.has("classifica")){
+                Log.d(TAG, "onGameMessageReceived: Classifica ce");
                 try {
                     j = jsonObject.getJSONArray("classifica");
                     for(int i=0;i< j.length();i++){
+
                         String playerName = j.getJSONObject(i).getString("name");
+                        Log.d(TAG, "onGameMessageReceived: name: "+playerName);
                         int points = j.getJSONObject(i).getInt("points");
-                        int image = j.getJSONObject(i).getInt("avatar");
-                        listaPlayer.add(playerName);
-                        classifica.put(playerName,points);
-                        avatar.put(playerName,image);
+                        int imageId = Avatar.getAvatarDrowableFromInt(j.getJSONObject(i).getInt("avatar")) ;
+                        listaPlayer.add(new classificaItem(playerName,points+"",imageId));
                     }
                 } catch (JSONException e) {
                     Log.d(TAG, "JSON error!");
                 }
-                stampaClassifica();
+                Log.d(TAG, "onGameMessageReceived: dimensione listaplayer "+listaPlayer.size());
+                updateAdapter();
             }
         }
     }
 
-    private void stampaClassifica() {
+    private void updateAdapter() {
+        Log.d(TAG, "updateAdapter: ");
 
-        /*for(int i=0;i<classifica.size();i++){
-           // lista.add(getLayoutInflater(savedInstanceState).inflate(R.layout.elemento_classifica,ll,false));
-        }
-        for(int i=0;i<classifica.size();i++){
-            ViewGroup.LayoutParams lp = ((ImageView)lista.get(i).findViewById(R.id.playerAvatar)).getLayoutParams();
-            lp.width = 50;
-            lp.height = 50;
-            (lista.get(i).findViewById(R.id.playerAvatar)).setLayoutParams(lp);
-            ((TextView)lista.get(i).findViewById(R.id.playerName)).setText(listaPlayer.get(i));
-            ((TextView)lista.get(i).findViewById(R.id.playerName)).setText(""+classifica.get(listaPlayer.get(i)));
-            ((ImageView)lista.get(i).findViewById(R.id.playerAvatar)).setImageResource(Avatar.getAvatarDrowableFromInt((Integer)avatar.get(listaPlayer.get(i))));
-        }*/
+        adapter.notifyDataSetChanged();
+        listView.invalidateViews();
+        listView.refreshDrawableState();
     }
 
 

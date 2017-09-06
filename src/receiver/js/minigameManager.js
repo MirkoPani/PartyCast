@@ -14,7 +14,7 @@ function MinigameManager() {
 MinigameManager.numMinHostChoose = 0;
 
 //"gyroMinigame", "micMinigame",
-MinigameManager.minigames = ["shakeMinigame", "touchMinigame"];
+MinigameManager.minigames = ["gyroMinigame","shakeMinigame", "touchMinigame"];
 
 //Carica un minigame specifico
 MinigameManager.prototype.loadSpecificMinigame = function (minigameType) {
@@ -22,7 +22,7 @@ MinigameManager.prototype.loadSpecificMinigame = function (minigameType) {
     //Se il numero di minigiochi e' uguale al numero che aveva scelto host è finito il gioco
     if (MinigameManager.numMinHostChoose == this.minigameCount) {
         console.log("GIOCO FINITO");
-        game.gameManager.updateGameData({minigame: minigameType});
+        game.gameManager.updateGameData({minigame: "endGame"});
         this.currentMinigame = minigameType;
         game.gamePhaser.state.start("endGame");
     }
