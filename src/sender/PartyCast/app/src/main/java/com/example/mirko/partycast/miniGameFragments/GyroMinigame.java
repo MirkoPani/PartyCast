@@ -2,12 +2,14 @@ package com.example.mirko.partycast.miniGameFragments;
 
 
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.mirko.partycast.GameActivity;
 import com.example.mirko.partycast.PartyCastApplication;
 import com.example.mirko.partycast.R;
 import com.example.mirko.partycast.utils.Orientation;
@@ -46,6 +48,8 @@ public class GyroMinigame extends Fragment implements Orientation.Listener {
     public movUpDown movUpDownCurrentValore;
     public movLeftRight movLeftRightCurrentValore;
 
+    public ConstraintLayout layout;
+
     public GyroMinigame() {
         // Required empty public constructor
     }
@@ -60,13 +64,18 @@ public class GyroMinigame extends Fragment implements Orientation.Listener {
 
         gameHasStarted=false;
         mOrientation = new Orientation(getActivity());
+        layout=(ConstraintLayout) view.findViewById(R.id.gyroMainLayout);
+
+
+        //Notifichiamo dell'avvenuto cambio
+        ((GameActivity)getActivity()).sendMiniGameChangedConfermation();
 
         return view;
     }
 
     @Override
     public void onOrientationChanged(float pitch, float roll) {
-        Log.d(TAG, "onOrientationChanged: ");
+        //Log.d(TAG, "onOrientationChanged: ");
 
         if (pitch <= -25) {
             movUpDownCurrentValore = movUpDown.Up;
@@ -174,7 +183,23 @@ public class GyroMinigame extends Fragment implements Orientation.Listener {
         @Override
         public void onGameMessageReceived(String playerId, JSONObject message) {
             Log.d(TAG, "onGameMessageReceived: " + message);
+            if (message.has("color")) {
 
+                try {
+                    Log.d(TAG, "onGameMessageReceived: colore: "+message.getString("color"));
+                    switch(message.getString("color"))
+                    {
+                        case "area_blu":layout.setBackgroundResource(R.color.blu);break;
+                        case "area_arancio":layout.setBackgroundResource(R.color.arancio);break;
+                        case "area_crema":layout.setBackgroundResource(R.color.crema);break;
+                        case "area_rosa":layout.setBackgroundResource(R.color.rosa);break;
+                        default:break;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
         }
     }
 

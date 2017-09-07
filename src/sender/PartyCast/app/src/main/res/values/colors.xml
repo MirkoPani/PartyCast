@@ -7,4 +7,9 @@
     <color name="endGameItem">#ffb65c</color>
     <color name="gyroMiniColor">#63ce7a</color>
     <color name="shakeMiniColor">#ce4e29</color>
+
+    <color name="blu">#014f91</color>
+    <color name="arancio">#e99b1f</color>
+    <color name="crema">#faf78e</color>
+    <color name="rosa">#e32861</color>
 </resources>

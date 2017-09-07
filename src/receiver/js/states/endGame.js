@@ -10,6 +10,7 @@ var endGame = {
         game.gameManager.addEventListener(cast.receiver.games.EventType.GAME_MESSAGE_RECEIVED,
             endGame.handleMessage);
         endGame.miniGameChangedCount=0;
+
     },
     create: function () {
         game.gamePhaser.stage.backgroundColor = "#ffcc5c";

@@ -34,7 +34,7 @@ public class ShakeMinigame extends Fragment {
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private ShakeDetector mShakeDetector;
-private boolean gameHasStarted;
+    private boolean gameHasStarted;
     MediaPlayer mp;
     Vibrator v;
 
