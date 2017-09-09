@@ -1,5 +1,7 @@
 package com.example.mirko.partycast;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.widget.ImageView;
 
 import com.example.mirko.partycast.customviews.MyBounceInterpolator;
 import com.example.mirko.partycast.customviews.TypeWriter;
+import com.example.mirko.partycast.viewpages.InstructionFragment;
 import com.google.android.gms.cast.games.GameManagerClient;
 import com.google.android.gms.cast.games.GameManagerState;
 import com.google.android.gms.common.api.PendingResult;
@@ -32,6 +35,9 @@ public class MainActivity extends GeneralActivity implements Observer {
     private MenuItem mItem = null;
     private MediaRouteButton mediaRouteButton;
     private GameManagerClient.Listener mListener = new LobbyListener();
+    private Button istructionButton;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +86,18 @@ public class MainActivity extends GeneralActivity implements Observer {
             }
         });
 
+        //istruction button
+        istructionButton = (Button)findViewById(R.id.istruction);
+        istructionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentManager = getFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(android.R.id.content,new InstructionFragment(),null);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
 
     }
 

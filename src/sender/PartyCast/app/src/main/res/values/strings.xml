@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PartyCast alpha</string>
 
@@ -8,6 +9,41 @@
         Gondola,Venezia,Roma,Milano,Pesce,Delfino,Teatro
     </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- testi per le spiegazioni dei minigiochi -->
+    <string name="Descrizione">
+        PartyCast &#232; un gioco multigiocatore per smartphone Android che richiede dispositivi Google Cast per funzionare.
+        \nIl gioco funziona dai 2 ai 4 giocatori ed &#232; adatto a tutte le et&#225; in quanto semplice e intuitivo.
+        \nIl gioco si sviluppa in una collezione di minigiochi, dove lo smartphone &#232; il proprio controller, in cui sfidare gli altri per far accrescere il proprio punteggio.
+        \nOgni minigioco ha na durata limite preimpostata.
+    </string>
+    <string name="titleMinigame1">Artisti e Indovini</string>
+    <string name="titleMinigame2">Shake</string>
+    <string name="titleMinigame3">Cerca e Raggiungi</string>
+    <string name="minigame1">
+        Il minigioco si sviluppa su due attori, ogni giocatore durante la sfida sar&#225; sia Artista che Indovino.
+        \nL\'artista tramite i 3 colori disponibili e la sua immaginazione deve disegnare all\'interno dell\'area designata la parola che gli viene indicata.
+        \nL\'indovino dovr&#225; dunque riuscire a capire il disegno dell\'artista e scegliere la risposta corretta tra le opzioni fornite.
+        \nIl disegno dell\'artista &#232; sempre visibile sulla TV con il dispositivo Cast.
+    </string>
+    <string name="minigame2">
+        In questo minigioco non dovrete far altro che shakerare il telefono.
+        \nUnica regola, per prendere punti lo dovrete fare solo durante la presenza del vostro nome sulla TV.
+        \nChe vinca lo shaker migliore!
+    </string>
+    <string name="minigame3_pt1">
+        In questo minigioco utilizzerete il vostro smartphone come volante, mentre l\'arena &#232; la vostra TV.
+        \nPiloterete il vostro personaggio verso le zone a voi designate.
+        \nSi colorer&#225; infatti lo schermo del vostro smartphone del colore che vi &#232; stato assegnato.
+        \nMa come guiderete il vostro personaggio?
+        \nPrima di tutto dovrete impugnare il telefono in modo da leggere il contenuto dello schermo.
+        \nL\'immagine sottostante rappresenta dunque il movimento da fare per far salire/scendere il personaggio:
+    </string>
+    <string name="minigame3_pt2">
+        Ma non basta, bisogna anche andare a destra e sinistra.
+        \nL\'immagine qua sotto vi mostrer&#225; come:
+    </string>
+    <string name="minigame3_pt3">
+        Potrete anche combinare i movimenti per muovere il vostro personaggio in diagonale.
+        \nE ricordate, pi&#249; aree raggiungete pi&#249; punti prendete!
+    </string>
 </resources>
