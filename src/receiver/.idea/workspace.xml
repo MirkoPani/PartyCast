@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="44508416-c774-4889-970e-f11d8f194249" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/states/endGame.js" afterPath="$PROJECT_DIR$/js/states/endGame.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/states/minigames/gyroMinigame.js" afterPath="$PROJECT_DIR$/js/states/minigames/gyroMinigame.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../sender/PartyCast/app/src/main/java/com/example/mirko/partycast/miniGameFragments/GyroMinigame.java" afterPath="$PROJECT_DIR$/../sender/PartyCast/app/src/main/java/com/example/mirko/partycast/miniGameFragments/GyroMinigame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../sender/PartyCast/app/src/main/java/com/example/mirko/partycast/miniGameFragments/ShakeMinigame.java" afterPath="$PROJECT_DIR$/../sender/PartyCast/app/src/main/java/com/example/mirko/partycast/miniGameFragments/ShakeMinigame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../sender/PartyCast/app/src/main/java/com/example/mirko/partycast/utils/Orientation.java" afterPath="$PROJECT_DIR$/../sender/PartyCast/app/src/main/java/com/example/mirko/partycast/utils/Orientation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../sender/PartyCast/app/src/main/res/layout/gyro_mini_game.xml" afterPath="$PROJECT_DIR$/../sender/PartyCast/app/src/main/res/layout/gyro_mini_game.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../sender/PartyCast/app/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/../sender/PartyCast/app/src/main/res/values/colors.xml" />
-    </list>
+    <list default="true" id="44508416-c774-4889-970e-f11d8f194249" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -27,7 +18,7 @@
       <file leaf-file-name="titleScreen.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/states/titleScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
+            <state relative-caret-position="582">
               <caret line="38" column="42" lean-forward="false" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="42" />
               <folding />
             </state>
@@ -47,14 +38,14 @@
       <file leaf-file-name="gyroMinigame.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/states/minigames/gyroMinigame.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
+            <state relative-caret-position="4080">
               <caret line="240" column="99" lean-forward="false" selection-start-line="240" selection-start-column="99" selection-end-line="240" selection-end-column="99" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shakeMinigame.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="shakeMinigame.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/states/minigames/shakeMinigame.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="500">
@@ -77,8 +68,8 @@
       <file leaf-file-name="minigameManager.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/minigameManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1394">
-              <caret line="82" column="8" lean-forward="false" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="67" />
+            <state relative-caret-position="196">
+              <caret line="16" column="38" lean-forward="false" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="38" />
               <folding>
                 <element signature="e#4924#4928#0" expanded="false" />
                 <element signature="e#4983#5008#0" expanded="false" />
@@ -87,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lobby.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="lobby.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/states/lobby.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2533">
-              <caret line="149" column="26" lean-forward="false" selection-start-line="149" selection-start-column="21" selection-end-line="149" selection-end-column="26" />
+            <state relative-caret-position="2414">
+              <caret line="142" column="50" lean-forward="false" selection-start-line="142" selection-start-column="46" selection-end-line="142" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -170,7 +161,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>updategame</find>
       <find>showing</find>
       <find>sendg</find>
       <find>artistTitl</find>
@@ -200,6 +190,7 @@
       <find>handlemessa</find>
       <find>minigamechanged</find>
       <find>anchor</find>
+      <find>gyroMini</find>
     </findStrings>
     <replaceStrings>
       <replace>touchMinigame</replace>
@@ -268,8 +259,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -537,14 +528,16 @@
       <workItem from="1504726318189" duration="5417000" />
       <workItem from="1504773725421" duration="5337000" />
       <workItem from="1504789100953" duration="636000" />
+      <workItem from="1504881023709" duration="44000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158114000" />
+    <option name="totallyTimeSpent" value="158158000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1370" height="754" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963072" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1055,14 +1048,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/states/lobby.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2533">
-          <caret line="149" column="26" lean-forward="false" selection-start-line="149" selection-start-column="21" selection-end-line="149" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -1123,22 +1108,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/states/titleScreen.js">
+    <entry file="file://$PROJECT_DIR$/js/states/minigames/gyroMinigame.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="42" lean-forward="false" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="42" />
+        <state relative-caret-position="4080">
+          <caret line="240" column="99" lean-forward="false" selection-start-line="240" selection-start-column="99" selection-end-line="240" selection-end-column="99" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/minigameManager.js">
+    <entry file="file://$PROJECT_DIR$/js/states/minigames/shakeMinigame.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1394">
-          <caret line="82" column="8" lean-forward="false" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="67" />
-          <folding>
-            <element signature="e#4924#4928#0" expanded="false" />
-            <element signature="e#4983#5008#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="500">
+          <caret line="223" column="1" lean-forward="true" selection-start-line="223" selection-start-column="1" selection-end-line="223" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1150,18 +1132,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/states/minigames/gyroMinigame.js">
+    <entry file="file://$PROJECT_DIR$/js/states/titleScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="240" column="99" lean-forward="false" selection-start-line="240" selection-start-column="99" selection-end-line="240" selection-end-column="99" />
+        <state relative-caret-position="582">
+          <caret line="38" column="42" lean-forward="false" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/states/minigames/shakeMinigame.js">
+    <entry file="file://$PROJECT_DIR$/js/minigameManager.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="223" column="1" lean-forward="true" selection-start-line="223" selection-start-column="1" selection-end-line="223" selection-end-column="1" />
+        <state relative-caret-position="196">
+          <caret line="16" column="38" lean-forward="false" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="38" />
+          <folding>
+            <element signature="e#4924#4928#0" expanded="false" />
+            <element signature="e#4983#5008#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/states/lobby.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2414">
+          <caret line="142" column="50" lean-forward="false" selection-start-line="142" selection-start-column="46" selection-end-line="142" selection-end-column="50" />
           <folding />
         </state>
       </provider>

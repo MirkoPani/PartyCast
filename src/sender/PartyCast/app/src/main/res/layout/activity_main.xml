@@ -22,7 +22,7 @@
         android:paddingLeft="45dp"
         android:paddingRight="45dp"
 
-        android:text="Start!"
+        android:text="@string/startBtnString"
         android:textAllCaps="false"
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -96,7 +96,7 @@
         app:layout_constraintLeft_toLeftOf="@+id/imgComic"
         app:layout_constraintRight_toRightOf="@+id/imgComic"
         app:layout_constraintTop_toTopOf="@+id/imgComic"
-        tools:text='"Ciao Gilbo!"' />
+        tools:text="@string/welcomeString" />
 
     <android.support.v7.app.MediaRouteButton
         android:id="@+id/media_route_button"

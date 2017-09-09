@@ -14,20 +14,22 @@
         PartyCast &#232; un gioco multigiocatore per smartphone Android che richiede dispositivi Google Cast per funzionare.
         \nIl gioco funziona dai 2 ai 4 giocatori ed &#232; adatto a tutte le et&#225; in quanto semplice e intuitivo.
         \nIl gioco si sviluppa in una collezione di minigiochi, dove lo smartphone &#232; il proprio controller, in cui sfidare gli altri per far accrescere il proprio punteggio.
-        \nOgni minigioco ha na durata limite preimpostata.
+        \nOgni minigioco ha una durata limite preimpostata.
     </string>
     <string name="titleMinigame1">Artisti e Indovini</string>
     <string name="titleMinigame2">Shake</string>
     <string name="titleMinigame3">Cerca e Raggiungi</string>
     <string name="minigame1">
-        Il minigioco si sviluppa su due attori, ogni giocatore durante la sfida sar&#225; sia Artista che Indovino.
+        In questo minigioco i giocatori potranno avere due ruoli: Artisti e Indovini. A rotazione, un singolo giocatore sar&#225;
+        l\'artista mentre gli altri saranno gli indovini.
         \nL\'artista tramite i 3 colori disponibili e la sua immaginazione deve disegnare all\'interno dell\'area designata la parola che gli viene indicata.
         \nL\'indovino dovr&#225; dunque riuscire a capire il disegno dell\'artista e scegliere la risposta corretta tra le opzioni fornite.
         \nIl disegno dell\'artista &#232; sempre visibile sulla TV con il dispositivo Cast.
+        \nQuando tutti gli indovini avranno dato una risposta verr&#225; assegnato un nuovo artista.
     </string>
     <string name="minigame2">
-        In questo minigioco non dovrete far altro che shakerare il telefono.
-        \nUnica regola, per prendere punti lo dovrete fare solo durante la presenza del vostro nome sulla TV.
+        In questo minigioco non dovrete far altro che scuotere il telefono quando il vostro nome apparir&#225; sulla TV.
+        \nSe muoverai il telefono quando il tuo nome non &#232; presente perderai punti, dunque stai attento!
         \nChe vinca lo shaker migliore!
     </string>
     <string name="minigame3_pt1">
@@ -44,6 +46,8 @@
     </string>
     <string name="minigame3_pt3">
         Potrete anche combinare i movimenti per muovere il vostro personaggio in diagonale.
-        \nE ricordate, pi&#249; aree raggiungete pi&#249; punti prendete!
+        \nE ricordate, pi&#249; aree raggiungerete pi&#249; punti prenderete!
     </string>
+    <string name="welcomeString">Benvenuti!</string>
+    <string name="startBtnString">Start!</string>
 </resources>
