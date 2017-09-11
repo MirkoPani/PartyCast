@@ -27,7 +27,9 @@ import org.json.JSONObject;
 
 import java.util.Observable;
 import java.util.Observer;
-
+/*
+Prima activity che viene avviata (Schermata iniziale)
+ */
 public class MainActivity extends GeneralActivity implements Observer {
 
     private CastConnectionManager connectionManager;
@@ -72,7 +74,7 @@ public class MainActivity extends GeneralActivity implements Observer {
         // writer.setTypeface(Typeface.createFromAsset(getAssets(), "berlin.ttf"));
         //Add a character every 150ms
         writer.setCharacterDelay(150);
-        writer.animateText("Ciao Gilbo!");
+        writer.animateText("Benvenuti!");
 
         //Oggetti per il collegamento cast
         connectionManager = PartyCastApplication.getInstance().getCastConnectionManager();

@@ -10,7 +10,9 @@ import android.widget.ImageView;
 import com.example.mirko.partycast.customviews.TypeWriter;
 import com.example.mirko.partycast.models.Avatar;
 
-
+/*
+Fragment usato per mostrare l'avatar nella selezione del personaggio
+ */
 public class AvatarFragment extends Fragment {
 
     Avatar avatar;

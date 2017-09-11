@@ -5,9 +5,12 @@ import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 
 /**
- * Created by MirkoPortatile on 15/05/2017.
+ * Creato da Mirko Pani e Nicola Gilberti per il progetto del corso LPSMT 2017
  */
 
+/*
+Custom Button per le schermate iniziali (Per avere un font diverso)
+ */
 public class ButtonPlus extends AppCompatButton   {
 
     public ButtonPlus(Context context) {

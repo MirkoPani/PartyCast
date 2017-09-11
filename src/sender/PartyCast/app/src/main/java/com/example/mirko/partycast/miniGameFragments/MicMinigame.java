@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 
 import com.example.mirko.partycast.R;
 
+
+
 /**
  * A simple {@link Fragment} subclass.
  */

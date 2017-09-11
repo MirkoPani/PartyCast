@@ -5,9 +5,12 @@ import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
 /**
- * Created by MirkoPortatile on 13/06/2017.
+ * Creato da Mirko Pani e Nicola Gilberti per il progetto del corso LPSMT 2017
  */
 
+/*
+Custom TextView per avere un font diverso
+ */
 public class CustomFontTextView extends AppCompatTextView {
 
     public CustomFontTextView(Context context, AttributeSet attrs) {

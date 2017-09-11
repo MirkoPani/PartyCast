@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.example.mirko.partycast.GameActivity;
 import com.example.mirko.partycast.PartyCastApplication;
 import com.example.mirko.partycast.R;
 import com.example.mirko.partycast.customviews.CustomFontTextView;
@@ -148,6 +149,11 @@ public class TouchMinigame extends Fragment implements DrawView.DrawViewListener
         disableIndoviniBtn();
         drawView.setTouchEnabled(false);
         drawView.setEnabled(false);
+
+        //Notifichiamo dell'avvenuto cambio
+        ((GameActivity)getActivity()).sendMiniGameChangedConfermation();
+
+
         return view;
     }
 

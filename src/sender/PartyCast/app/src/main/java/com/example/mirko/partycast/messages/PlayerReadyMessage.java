@@ -6,9 +6,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by nicola on 24/05/2017.
+ * Creato da Mirko Pani e Nicola Gilberti per il progetto del corso LPSMT 2017
  */
-
+/*
+Classe modello per il messaggio ready
+*/
 public class PlayerReadyMessage extends Message {
     private static final String TAG = "Player Ready Message";
     private int avatar;

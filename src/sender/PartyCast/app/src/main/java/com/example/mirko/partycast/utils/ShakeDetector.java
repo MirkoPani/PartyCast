@@ -5,6 +5,9 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
+/*
+Classe di supporto per la gestione del shake
+ */
 public class ShakeDetector implements SensorEventListener {
 
     private static final float SHAKE_THRESHOLD_GRAVITY = 2.7F;

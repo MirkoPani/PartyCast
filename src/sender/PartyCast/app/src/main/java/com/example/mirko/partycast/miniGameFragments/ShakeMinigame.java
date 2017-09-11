@@ -23,8 +23,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Fragment del minigioco "Shake"
  */
+
 public class ShakeMinigame extends Fragment {
 
     private static final String TAG = "ShakeMinigame";
@@ -142,7 +143,7 @@ public class ShakeMinigame extends Fragment {
         super.onDestroy();
     }
 
-    //Listener
+    //Listener usato dal fragment per ricevere messaggi
     private class ShakeMinigameListener implements GameManagerClient.Listener {
 
         @Override

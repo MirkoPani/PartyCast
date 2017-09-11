@@ -25,9 +25,11 @@ import com.google.android.gms.cast.games.GameManagerClient;
 import com.google.android.gms.common.api.PendingResult;
 
 /**
- * Created by MirkoPortatile on 17/05/2017.
+ * Creato da Mirko Pani e Nicola Gilberti per il progetto del corso LPSMT 2017
  */
-
+/*
+Fragment usato per la lobby iniziale (Scelta personaggio)
+ */
 public class LobbyFragment extends Fragment implements Listener {
     GameManagerClient gmc;
     DeactivableViewPager viewPager;

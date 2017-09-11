@@ -8,9 +8,11 @@ import org.json.JSONObject;
 import static android.content.ContentValues.TAG;
 
 /**
- * Created by MirkoPortatile on 07/06/2017.
+ * Creato da Mirko Pani e Nicola Gilberti per il progetto del corso LPSMT 2017
  */
-
+/*
+Classe modello per il messaggio di inizio gioco
+ */
 public class PlayerPlayingMessage extends Message{
     int nSfide;
 

@@ -5,6 +5,10 @@ import android.os.Handler;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
+/*
+
+Classe per l'effetto tastiera usato nella CustomTextView
+ */
 public class TypeWriter extends AppCompatTextView {
 
     private CharSequence mText;

@@ -9,6 +9,8 @@ var touchMinigame = {
     minigameInstructionText: "",
     turnNumber: 0,
     artistTitle:{},
+    miniGameChangedCount:0,
+    messageWords:{},
     preload: function () {
 
         //Player uscito involontariamente oppure ha chiuso l'app
@@ -20,6 +22,10 @@ var touchMinigame = {
         //Player uscito volontariamente
         game.gameManager.addEventListener(cast.receiver.games.EventType.PLAYER_QUIT,
             game.minigameManager.handlePlayerDisconnected);
+
+        //Eventi
+        game.gameManager.addEventListener(
+            cast.receiver.games.EventType.GAME_MESSAGE_RECEIVED,touchMinigame.handleMessageReceived);
 
 
     },
@@ -65,10 +71,15 @@ var touchMinigame = {
 
 
     },
+    startGame:function(){
+        game.gameManager.sendGameMessageToAllConnectedPlayers(touchMinigame.messageWords);
+        touchMinigame.showInstructions("Artisti e indovini");
+
+    },
     create: function () {
         game.gamePhaser.stage.backgroundColor = "#3db3ce";
         game.minigameManager.drawHud();
-        this.showInstructions("Artisti e indovini");
+
 
         //Scritta Sopra
         touchMinigame.artistTitle = game.gamePhaser.add.text(game.gamePhaser.world.centerX, 80, "In attesa", game.textStyles.titleStyle);
@@ -85,9 +96,6 @@ var touchMinigame = {
 
         touchMinigame.clocktimer.loop(Phaser.Timer.SECOND, touchMinigame.updateDisplay, this);
 
-        //Eventi
-        game.gameManager.addEventListener(
-            cast.receiver.games.EventType.GAME_MESSAGE_RECEIVED,touchMinigame.handleMessageReceived);
 
     },
     handleMessageReceived:function (event) {
@@ -95,6 +103,15 @@ var touchMinigame = {
         console.log("Messaggio ricevuto");
         var message = event.requestExtraMessageData;
         //    console.log("message=" + message);
+
+
+        if (message.hasOwnProperty('minigamechanged')) {
+            touchMinigame.miniGameChangedCount++;
+            if (touchMinigame.miniGameChangedCount === game.playerManager.players.length) {
+                console.log("Ricevute tutte le conferme.Inizio il gioco");
+                touchMinigame.startGame();
+            }
+        }
 
 
         //Cambiato artista, ricevuto quello nuovo
@@ -127,6 +144,9 @@ var touchMinigame = {
         //Ci è stata mandata la collezione di parole, inviamola a tutti
         if (message.words) {
             console.log("Ricevuto message words");
+
+            touchMinigame.messageWords=message;
+
             game.gameManager.sendGameMessageToAllConnectedPlayers(message);
 
             //salviamo l'indice della parola giusta
@@ -136,6 +156,7 @@ var touchMinigame = {
             //salviamo il numero di turno
             touchMinigame.turnNumber = message.turn;
             console.log("Numero turno: " + touchMinigame.turnNumber);
+
         }
 
         //Caso in cui abbiamo colorato qualcosa

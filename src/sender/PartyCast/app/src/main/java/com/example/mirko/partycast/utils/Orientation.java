@@ -10,6 +10,10 @@ import android.support.annotation.Nullable;
 import android.view.Surface;
 import android.view.WindowManager;
 
+/*
+Classe di supporto per la gestione della rotazione.
+
+ */
 public class Orientation implements SensorEventListener {
 
   public interface Listener {

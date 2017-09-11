@@ -11,7 +11,7 @@ import java.util.List;
 import static com.google.android.gms.internal.zzt.TAG;
 
 /**
- * Created by nicola on 06/06/2017.
+ * Creato da Mirko Pani e Nicola Gilberti per il progetto del corso LPSMT 2017
  */
 
 public class PartyCastModel {

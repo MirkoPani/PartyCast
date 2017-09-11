@@ -12,9 +12,14 @@ import com.example.mirko.partycast.models.Avatar;
 import java.util.ArrayList;
 
 /**
- * Created by nicola on 26/05/2017.
+ * Creato da Mirko Pani e Nicola Gilberti per il progetto del corso LPSMT 2017.
+ * "PartyCast app"
  */
 
+/*
+Adapter per la schermata di scelta del personaggio.
+
+ */
 public class avatarSliderAdapter extends FragmentPagerAdapter {
     //variabili
     Context context;

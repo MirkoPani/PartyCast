@@ -20,7 +20,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Creato da Mirko Pani e Nicola Gilberti per il progetto del corso LPSMT 2017
+ */
+
+/*
+Fragment del minigioco "Cerca e raggiungi"
  */
 public class GyroMinigame extends Fragment implements Orientation.Listener {
 
@@ -140,6 +144,7 @@ public class GyroMinigame extends Fragment implements Orientation.Listener {
         mOrientation.stopListening();
     }
 
+    //Funzione che manda un messaggio con le indicazione dei movimenti appena fatti.
     public void sendOrientationMessage(movUpDown movUpDown, movLeftRight movLeftRight) {
         JSONObject jsonMessage = new JSONObject();
         GameManagerClient gameManagerClient = PartyCastApplication.getInstance().getCastConnectionManager().getGameManagerClient();
@@ -157,7 +162,7 @@ public class GyroMinigame extends Fragment implements Orientation.Listener {
         }
     }
 
-    //Listener
+    //Listener usato dal frament per ricevere messaggi
     private class GyroMinigameListener implements GameManagerClient.Listener {
 
         @Override

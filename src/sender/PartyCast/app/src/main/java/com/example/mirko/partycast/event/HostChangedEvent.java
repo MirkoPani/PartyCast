@@ -1,7 +1,7 @@
 package com.example.mirko.partycast.event;
 
 /**
- * Created by MirkoPortatile on 07/06/2017.
+ * Creato da Mirko Pani e Nicola Gilberti per il progetto del corso LPSMT 2017
  */
 
 public class HostChangedEvent extends Event {

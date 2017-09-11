@@ -8,7 +8,7 @@ import com.example.mirko.partycast.miniGameFragments.*;
 
 
 /**
- * Created by nicola on 08/06/2017.
+ * Creato da Mirko Pani e Nicola Gilberti per il progetto del corso LPSMT 2017
  */
 
 public class MiniGameManager {

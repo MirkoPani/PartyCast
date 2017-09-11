@@ -6,9 +6,12 @@ import android.graphics.Typeface;
 import java.util.Hashtable;
 
 /**
- * Created by MirkoPortatile on 15/05/2017.
+ * Creato da Mirko Pani e Nicola Gilberti per il progetto del corso LPSMT 2017
  */
 
+/*
+Classe usata per la cache dei caratteri. Usata insieme al Custom TextView
+ */
     public class FontCache {
 
         private static Hashtable<String, Typeface> fontCache = new Hashtable<String, Typeface>();

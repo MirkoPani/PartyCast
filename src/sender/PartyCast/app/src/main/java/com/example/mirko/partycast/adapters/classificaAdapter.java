@@ -17,9 +17,13 @@ import com.example.mirko.partycast.models.classificaItem;
 import java.util.ArrayList;
 
 /**
- * Created by MirkoPortatile on 06/09/2017.
+ * Creato da Mirko Pani e Nicola Gilberti per il progetto del corso LPSMT 2017
  */
 
+/*
+Custom Adapter per la presentazione della classifica finale (fragment endGame)
+
+ */
 public class classificaAdapter extends ArrayAdapter<classificaItem> {
 
     private int colorResourceId;

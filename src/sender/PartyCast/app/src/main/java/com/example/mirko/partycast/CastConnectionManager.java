@@ -34,6 +34,11 @@ import com.google.android.gms.common.api.Status;
 
 import java.util.Observable;
 
+/*
+Classe di supporto per la gestione del Cast creata da Google
+ */
+
+
 /**
  * Abstracts all the logic needed to establish a connection to a cast device and get the
  * GameManagerClient initialized.

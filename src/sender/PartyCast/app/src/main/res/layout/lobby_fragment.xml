@@ -10,6 +10,7 @@
 
     <com.example.mirko.partycast.customviews.ButtonPlus
         android:id="@+id/ready"
+        style="@style/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"

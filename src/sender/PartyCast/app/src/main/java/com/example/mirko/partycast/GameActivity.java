@@ -14,6 +14,10 @@ import org.json.JSONObject;
 
 import static com.google.android.gms.cast.games.GameManagerClient.LOBBY_STATE_OPEN;
 
+/*
+Activity principale usata per gestire i vari minigiochi
+
+ */
 public class GameActivity extends GeneralActivity {
 
     private GameManagerClient.Listener mListener = new GameListener();

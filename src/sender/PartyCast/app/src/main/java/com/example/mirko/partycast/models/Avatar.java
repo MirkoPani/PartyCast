@@ -3,9 +3,11 @@ package com.example.mirko.partycast.models;
 import com.example.mirko.partycast.R;
 
 /**
- * Created by MirkoPortatile on 30/05/2017.
+ * Creato da Mirko Pani e Nicola Gilberti per il progetto del corso LPSMT 2017
  */
-
+/*
+Classe modello per la gestione degli Avatar
+ */
 public class Avatar {
     private String name;
 

@@ -1,9 +1,11 @@
 package com.example.mirko.partycast.models;
 
 /**
- * Created by nicola on 05/09/2017.
+ * Creato da Mirko Pani e Nicola Gilberti per il progetto del corso LPSMT 2017
  */
-
+/*
+Classe modello per gli elementi della ListView classifica
+ */
 public class classificaItem {
 
     private String name;

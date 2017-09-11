@@ -5,7 +5,7 @@ import android.app.Application;
 import com.google.android.gms.cast.games.GameManagerClient;
 
 /**
- * Created by MirkoPortatile on 16/05/2017.
+ * Creato da Mirko Pani e Nicola Gilberti per il progetto del corso LPSMT 2017
  */
 
 //Application che viene eseguita all'avvio del gioco. Contiene gli oggetti generali che saranno usati
